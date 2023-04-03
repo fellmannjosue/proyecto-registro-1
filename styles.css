@@ -1,0 +1,137 @@
+/* Estilos generales */
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+/* Estilos para el card */
+
+.card {
+  margin-top: 20px;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: white;
+}
+
+.card-header h4 {
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Estilos para los inputs y selects */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group select {
+  width: 100%;
+}
+
+/* Estilos para la tabla */
+
+.table-container {
+  margin-top: 20px;
+}
+
+.table-container .table {
+  padding: 0;
+  border: 1px solid #dee2e6;
+}
+
+.table-container .table th,
+.table-container .table td {
+  border: 1px solid #dee2e6;
+}
+
+.table-container .table thead th {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+}
+
+.table-container .table tbody td {
+  text-align: center;
+}
+
+/* Estilos para los botones */
+
+.btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Estilos para la imagen */
+
+.image-preview {
+  margin-top: 10px;
+  max-width: 200px;
+}
+
+.image-preview img {
+  max-width: 100%;
+}
+
+/* Estilos para las alertas */
+
+.alert {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  color: #856404;
+}

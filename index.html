@@ -3,127 +3,142 @@
 <head>
 	<title>Registro de inventario</title>
 	<!-- Importar Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Importar jQuery y Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-w+9E3Ey3hG/f2P4o4j6Rym1WRUf+ff2QrwsBZTlkRnJzcTvtNgLoj+gI0nL/TdD/fqYJWgZ8xv+ncXAFrwH+Jg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 	<div class="container mt-5">
 		<div class="card">
-			<div class="card-header bg-primary text-white">
-				<h4>Registro de inventario</h4>
+			<div class="card-header">
+				<h2>Registro de inventario</h2>
 			</div>
 			<div class="card-body">
 				<form id="registro-form">
-					<div class="form-group">
-						<label for="identificacion-select">Identificación:</label>
-						<select class="form-control" id="identificacion-select" name="identificacion">
-							<option value="ANAAIO">ANAAIO</option>
-							<option value="ANALAP">ANALAP</option>
-						</select>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="identificacion">Identificación:</label>
+							<select class="form-control" id="identificacion" name="identificacion">
+								<option value="ANAAIO">ANAAIO</option>
+								<option value="ANALAP">ANALAP</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inventario">ID de inventario:</label>
+							<input type="text" class="form-control" id="inventario" name="inventario">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="id-inventario">ID de inventario:</label>
-						<input type="text" class="form-control" id="id-inventario" name="idInventario">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="serie">Serie:</label>
+							<input type="text" class="form-control" id="serie" name="serie">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="modelo">Modelo:</label>
+							<input type="text" class="form-control" id="modelo" name="modelo">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="serie">Serie:</label>
-						<input type="text" class="form-control" id="serie" name="serie">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="nombre">Nombre:</label>
+							<input type="text" class="form-control" id="nombre" name="nombre">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="apellido">Apellido:</label>
+							<input type="text" class="form-control" id="apellido" name="apellido">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="modelo">Modelo:</label>
-						<input type="text" class="form-control" id="modelo" name="modelo">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="admin">Usuario admin que entregó:</label>
+							<input type="text" class="form-control" id="admin" name="admin">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="fecha">Fecha de entrega:</label>
+							<input type="date" class="form-control" id="fecha" name="fecha">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="nombre">Nombre:</label>
-						<input type="text" class="form-control" id="nombre" name="nombre">
+					<					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="ip">Dirección IP:</label>
+							<select class="form-control" id="ip" name="ip">
+								<option value="dhcp">DHCP</option>
+								<option value="estatica">Estática</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="direccion">Dirección IP:</label>
+							<input type="text" class="form-control" id="direccion" name="direccion">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="apellido">Apellido:</label>
-						<input type="text" class="form-control" id="apellido" name="apellido">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="area">Área:</label>
+							<select class="form-control" id="area" name="area">
+								<option value="opcion1">Opción 1</option>
+								<option value="opcion2">Opción 2</option>
+								<option value="opcion3">Opción 3</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="grado">Grado:</label>
+							<select class="form-control" id="grado" name="grado">
+								<option value="opcion1">Opción 1</option>
+								<option value="opcion2">Opción 2</option>
+								<option value="opcion3">Opción 3</option>
+							</select>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="usuario-admin">Usuario admin que entregó:</label>
-						<input type="text" class="form-control" id="usuario-admin" name="usuarioAdmin">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="img1">Imagen 1:</label>
+							<input type="file" class="form-control-file" id="img1" name="img1">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="img2">Imagen 2:</label>
+							<input type="file" class="form-control-file" id="img2" name="img2">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="fecha-entrega">Fecha de entrega:</label>
-						<input type="date" class="form-control" id="fecha-entrega" name="fechaEntrega">
-					</div>
-					<div class="form-group">
-						<label for="ip-select">IP:</label>
-						<select class="form-control" id="ip-select" name="ip">
-							<option value="DHCP">DHCP</option>
-							<option value="estatica">Estática</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="direccion-ip">Dirección IP:</label>
-						<input type="text" class="form-control" id="direccion-ip" name="direccionIp">
-					</div>
-					<div class="form-group">
-						<label for="area-select">Área:</label>
-						<select class="form-control" id="area-select" name="area">
-							<option value="area1">Área 1</option>
-							<option value="area2">Área 2</option>
-							<option value="area3">Área 3</option>
-                        </select>
-					</div>
-					<div class="form-group">
-						<label for="grado-select">Grado:</label>
-						<select class="form-control" id="grado-select" name="grado">
-							<option value="grado1">Grado 1</option>
-							<option value="grado2">Grado 2</option>
-							<option value="grado3">Grado 3</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="img1">Imagen 1:</label>
-						<input type="file" class="form-control-file" id="img1" name="img1">
-					</div>
-					<div class="form-group">
-						<label for="img2">Imagen 2:</label>
-						<input type="file" class="form-control-file" id="img2" name="img2">
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Registrar</button>
-						<button type="button" class="btn btn-warning" id="editar-btn" style="display:none;">Editar</button>
-						<button type="button" class="btn btn-danger" id="borrar-btn" style="display:none;">Borrar</button>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<button type="submit" class="btn btn-primary">Registrar</button>
+						</div>
+						<div class="form-group col-md-4">
+							<button type="button" class="btn btn-warning">Editar</button>
+						</div>
+						<div class="form-group col-md-4">
+							<button type="button" class="btn btn-danger">Borrar</button>
+						</div>
 					</div>
 				</form>
-				<hr>
-				<table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Identificación</th>
-                            <th>ID de inventario</th>
-                            <th>Serie</th>
-                            <th>Modelo</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Usuario admin que entregó</th>
-                            <th>Fecha de entrega</th>
-                            <th>IP</th>
-                            <th>Dirección IP</th>
-                            <th>Área</th>
-                            <th>Grado</th>
-                            <th>Imagen 1</th>
-                            <th>Imagen 2</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-registros">
-                        <!-- Aquí se mostrarán los registros -->
-                    </tbody>
-                </table>
+			</div>
 		</div>
+
+		<table class="table mt-5">
+			<thead>
+				<tr>
+					<th>Identificación</th>
+					<th>ID de inventario</th>
+					<th>Serie</th>
+					<th>Modelo</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Usuario admin que entregó</th>
+					<th>Fecha de entrega</th>
+					<th>Dirección IP</th>
+					<th>Área</th>
+					<th>Grado</th>
+				</tr>
+			</thead>
+			<tbody id="tabla-registros">
+				</tbody>
+		</table>
+
+		<script>
+			// Aquí irá el código JavaScript
+		</script>
+
 	</div>
 
-
-
-<script src="app.js"></script>
 </body>
+
 </html>
+
