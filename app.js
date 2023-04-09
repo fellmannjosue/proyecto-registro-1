@@ -1,161 +1,188 @@
-// Obtener elementos del DOM
-const formulario = document.querySelector('#formulario');
-const idInventario = document.querySelector('#idInventario');
-const serie = document.querySelector('#serie');
-const modelo = document.querySelector('#modelo');
-const nombre = document.querySelector('#nombre');
-const apellido = document.querySelector('#apellido');
-const usuario = document.querySelector('#usuario');
-const fecha = document.querySelector('#fecha');
-const direccionIP = document.querySelector('#direccionIP');
-const area = document.querySelector('#area');
-const grado = document.querySelector('#grado');
-const tipoIP = document.querySelector('#tipoIP');
-const imagen = document.querySelector('#imagen');
-const imagenPrevia = document.querySelector('#imagen-previa');
-const tabla = document.querySelector('#registros');
+document.addEventListener('DOMContentLoaded', function() {
+  // Inicializa la aplicación y maneja la navegación entre pantallas
+  initApp();
 
-// Función para generar un ID aleatorio
-function generarId() {
-  return '_' + Math.random().toString(36).substr(2, 9);
+  // Agrega event listeners a los formularios
+  setupFormListeners();
+});
+
+function initApp() {
+  // Muestra la pantalla inicial de inicio de sesión y registro
+  // Oculta las otras pantallas
+  document.getElementById('loginRegisterContainer').style.display = 'flex';
+  document.getElementById('dataFormContainer').style.display = 'none';
+  document.getElementById('tableContainer').style.display = 'none';
 }
 
-// Función para agregar un registro a la tabla
-function agregarRegistro(registro) {
-  const fila = document.createElement('tr');
-  fila.innerHTML = `
-    <td>${registro.idInventario}</td>
-    <td>${registro.serie}</td>
-    <td>${registro.modelo}</td>
-    <td>${registro.nombre} ${registro.apellido}</td>
-    <td>${registro.usuario}</td>
-    <td>${registro.fecha}</td>
-    <td>${registro.direccionIP}</td>
-    <td>${registro.area}</td>
-    <td>${registro.grado}</td>
-    <td><img src="${registro.imagen}" class="img-thumbnail" alt="Imagen"></td>
-    <td>
-      <button class="btn btn-editar" data-id="${registro.id}"><i class="bi bi-pencil-square"></i></button>
-      <button class="btn btn-borrar" data-id="${registro.id}"><i class="bi bi-trash"></i></button>
-    </td>
-  `;
-  tabla.appendChild(fila);
-}
+function setupFormListeners() {
+  // Agrega event listeners a los formularios para manejar la validación y almacenamiento local
+  const registerForm = document.getElementById('registerForm');
+  registerForm.addEventListener('submit', function(event) {
+      event.preventDefault();
 
-// Función para guardar el registro en el almacenamiento local
-function guardarRegistro(registro) {
-  const registros = JSON.parse(localStorage.getItem('registros')) || [];
-  registros.push(registro);
-  localStorage.setItem('registros', JSON.stringify(registros));
-}
+      if (validateRegisterForm()) {
+          saveRegisterData();
 
-// Función para cargar los registros guardados en el almacenamiento local
-function cargarRegistros() {
-  const registros = JSON.parse(localStorage.getItem('registros')) || [];
-  registros.forEach(registro => {
-    agregarRegistro(registro);
+          // Navega a la pantalla de datos si el registro es exitoso
+          document.getElementById('loginRegisterContainer').style.display = 'none';
+          document.getElementById('dataFormContainer').style.display = 'block';
+      }
+  });
+
+  const loginForm = document.getElementById('loginForm');
+  loginForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      if (validateLoginForm() && checkLoginData()) {
+          // Navega a la pantalla de datos si el inicio de sesión es exitoso
+          document.getElementById('loginRegisterContainer').style.display = 'none';
+          document.getElementById('dataFormContainer').style.display = 'block';
+      }
+  });
+
+  const dataForm = document.getElementById('dataForm');
+  dataForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      if (validateDataForm()) {
+          saveDataForm();
+
+          // Actualiza la tabla con los datos almacenados en el almacenamiento local
+          updateDataTable();
+      }
   });
 }
 
-// Función para eliminar un registro de la tabla y del almacenamiento local
-function eliminarRegistro(id) {
-  const registros = JSON.parse(localStorage.getItem('registros')) || [];
-  const indice = registros.findIndex(registro => registro.id === id);
-  if (indice !== -1) {
-    registros.splice(indice, 1);
-    localStorage.setItem('registros', JSON.stringify(registros));
+function validateRegisterForm() {
+  // Valida los campos del formulario de registro
+  // Devuelve true si el formulario es válido, de lo contrario false
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
+  const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+  if (email === '' || password === '' || confirmPassword === '') {
+      alert('Todos los campos son requeridos');
+      return false;
+  } else if (password !== confirmPassword) {
+      alert('Las contraseñas no coinciden');
+      return false;
+  } else {
+      return true;
   }
 }
 
-// Función para mostrar los detalles de un registro en el formulario
-function mostrarRegistro(id) {
-  const registros = JSON.parse(localStorage.getItem('registros')) || [];
-  const registro = registros.find(registro => registro.id === id);
-  if (registro) {
-    idInventario.value = registro.idInventario;
-    serie.value = registro.serie;
-    modelo.value = registro.modelo;
-    nombre.value = registro.nombre;
-    apellido.value = registro.apellido;
-    usuario.value = registro.usuario;
-    fecha.value = registro.fecha;
-    direccionIP.value = registro.direccionIP;
-    area.value = registro.area;
-    grado.value = registro.grado;
-    tipoIP.value = registro.tipoIP;
-    imagenPrevia.src = registro.imagen;
+function saveRegisterData() {
+  // Guarda los datos del registro en el almacenamiento local
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
+  localStorage.setItem('userData', JSON.stringify({ email, password }));
+}
+
+function validateLoginForm() {
+  // Valida los campos del formulario de inicio de sesión
+  // Devuelve true si el formulario es válido, de lo contrario false
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+
+  if (email === '' || password === '') {
+      alert('Todos los campos son requeridos');
+      return false;
+  } else {
+      return true;
   }
 }
 
-// Función para enviar el formulario
-function enviarFormulario(evento) {
-evento.preventDefault();
+function checkLoginData() {
+  // Comprueba si los datos de inicio de sesión coinciden con los datos almacenados en el almacenamiento local
+  // Devuelve true si coinciden, de lo contrario false
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  const storedData = JSON.parse(localStorage.getItem('userData'));
+  
+ 
+  if (storedData && storedData.email === email && storedData.password === password) {
+      return true;
+  } else {
+      alert('Correo electrónico o contraseña incorrectos');
+      return false;
+  }
+  }
+  
+  function validateDataForm() {
+  // Valida los campos del formulario de datos
+  // Devuelve true si el formulario es válido, de lo contrario false
+  const idInventario = document.getElementById('idInventario').value;
+  const serieModelo = document.getElementById('serieModelo').value;
+  const nombre = document.getElementById('nombre').value;
+  const apellido = document.getElementById('apellido').value;
+  const usuarioAdmin = document.getElementById('usuarioAdmin').value;
+  const fechaEntrega = document.getElementById('fechaEntrega').value;
+  const tipoIp = document.getElementById('tipoIp').value;
+  const ip = document.getElementById('ip').value;
+  const area = document.getElementById('area').value;
+  const grado = document.getElementById('grado').value;
+  
+  
+  if (idInventario === '' || serieModelo === '' || nombre === '' || apellido === '' || usuarioAdmin === '' || fechaEntrega === '' || tipoIp === '' || ip === '' || area === '' || grado === '') {
+      alert('Todos los campos son requeridos');
+      return false;
+  } else {
+      return true;
+  }
+  }
+  
+  function saveDataForm() {
+  // Guarda los datos del formulario de datos en el almacenamiento local
+  const data = {
+  idInventario: document.getElementById('idInventario').value,
+  serieModelo: document.getElementById('serieModelo').value,
+  nombre: document.getElementById('nombre').value,
+  apellido: document.getElementById('apellido').value,
+  usuarioAdmin: document.getElementById('usuarioAdmin').value,
+  fechaEntrega: document.getElementById('fechaEntrega').value,
+  tipoIp: document.getElementById('tipoIp').value,
+  ip: document.getElementById('ip').value,
+  area: document.getElementById('area').value,
+  grado: document.getElementById('grado').value,
+  imagen1: document.getElementById('imagen1').value,
+  imagen2: document.getElementById('imagen2').value,
+  };
+  
+  
+  let dataArray = JSON.parse(localStorage.getItem('inventoryData')) || [];
+  dataArray.push(data);
+  localStorage.setItem('inventoryData', JSON.stringify(dataArray));
+  }
+  
+  function updateDataTable() {
+  // Actualiza la tabla con los datos almacenados en el almacenamiento local
+  const tableBody = document.getElementById('dataTableBody');
+  tableBody.innerHTML = '';
+  
 
-const idInventarioValor = idInventario.value.trim();
-const serieValor = serie.value.trim();
-const modeloValor = modelo.value.trim();
-const nombreValor = nombre.value.trim();
-const apellidoValor = apellido.value.trim();
-const usuarioValor = usuario.value.trim();
-const fechaValor = fecha.value.trim();
-const direccionIPValor = direccionIP.value.trim();
-const areaValor = area.value;
-const gradoValor = grado.value;
-const tipoIPValor = tipoIP.value;
-const imagenValor = imagen.files[0];
-
-// Validar campos requeridos
-if (!idInventarioValor || !serieValor || !modeloValor || !nombreValor || !apellidoValor || !usuarioValor || !fechaValor || !direccionIPValor || !areaValor || !gradoValor || !tipoIPValor || !imagenValor) {
-alert('Por favor, complete todos los campos.');
-return;
-}
-
-// Crear un objeto de registro
-const registro = {
-id: generarId(),
-idInventario: idInventarioValor,
-serie: serieValor,
-modelo: modeloValor,
-nombre: nombreValor,
-apellido: apellidoValor,
-usuario: usuarioValor,
-fecha: fechaValor,
-direccionIP: direccionIPValor,
-area: areaValor,
-grado: gradoValor,
-tipoIP: tipoIPValor,
-imagen: ''
-};
-
-// Convertir la imagen a una URL de datos
-const lector = new FileReader();
-lector.onload = function() {
-registro.imagen = lector.result;
-guardarRegistro(registro);
-agregarRegistro(registro);
-formulario.reset();
-};
-lector.readAsDataURL(imagenValor);
-}
-
-// Función para manejar los eventos de los botones de editar y borrar
-function manejarBotones(evento) {
-if (evento.target.classList.contains('btn-editar')) {
-const id = evento.target.getAttribute('data-id');
-mostrarRegistro(id);
-}
-if (evento.target.classList.contains('btn-borrar')) {
-const id = evento.target.getAttribute('data-id');
-eliminarRegistro(id);
-evento.target.closest('tr').remove();
-}
-}
-
-// Cargar los registros guardados al iniciar la aplicación
-cargarRegistros();
-
-// Agregar un evento para enviar el formulario
-formulario.addEventListener('submit', enviarFormulario);
-
-// Agregar un evento para manejar los botones de editar y borrar
-tabla.addEventListener('click', manejarBotones);
+  const storedData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+  
+  storedData.forEach(function(data) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+          <td>${data.idInventario}</td>
+          <td>${data.serieModelo}</td>
+          <td>${data.nombre}</td>
+          <td>${data.apellido}</td>
+          <td>${data.usuarioAdmin}</td>
+          <td>${data.fechaEntrega}</td>
+          <td>${data.tipoIp}</td>
+          <td>${data.ip}</td>
+          <td>${data.area}</td>
+          <td>${data.grado}</td>
+          <td>${data.imagen1}</td>
+          <td>${data.imagen2}</td>
+      `;
+      tableBody
+  
+  
+  
+  
+      .appendChild(row);
+  });
+  }
