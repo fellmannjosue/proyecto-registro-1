@@ -1,144 +1,200 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const formularioRegistro = document.getElementById("formulario-registro");
-  const pantallaRegistro = document.getElementById("pantalla-registro");
-  const pantallaTabla = document.getElementById("pantalla-tabla");
-  const tablaRegistros = document.getElementById("tabla-registros");
+const formularioRegistro = document.getElementById("formulario-registro");
+const tablaRegistros = document.getElementById("tabla-registros");
+const btnGuardar = document.getElementById("btn-guardar");
+const btnCancelar = document.getElementById("btn-cancelar");
+const btnRegresar = document.getElementById("btn-regresar");
 
-  // Ejemplo de botones para cambiar entre pantallas
-  const btnIrATabla = document.getElementById("btn-ir-a-tabla");
-  const btnIrARegistro = document.getElementById("btn-ir-a-registro");
-  const btnRegresarARegistro = document.getElementById(
-    "btn-regresar-a-registro"
-  );
-  btnRegresarARegistro.addEventListener("click", mostrarPantallaRegistro);
+let registros = [];
 
-  btnIrATabla.addEventListener("click", mostrarPantallaTabla);
-  btnIrARegistro.addEventListener("click", mostrarPantallaRegistro);
+function cargarRegistrosEnTabla() {
+    const registros = JSON.parse(localStorage.getItem("registros")) || [];
 
-  formularioRegistro.addEventListener("submit", async function (event) {
-    event.preventDefault();
+    tablaRegistros.innerHTML = "";
 
-    const identificacion = event.target.elements.identificacion.value;
-    const idInventario = event.target.elements.idInventario.value;
-    const serie = event.target.elements.serie.value;
-    const modelo = event.target.elements.modelo.value;
-    const nombre = event.target.elements.nombre.value;
-    const apellido = event.target.elements.apellido.value;
-    const usuarioAdmin = event.target.elements.usuarioAdmin.value;
-    const fechaEntrega = event.target.elements.fechaEntrega.value;
-    const tipoIp = event.target.elements.tipoIp.value;
-    const ip = event.target.elements.ip.value;
-    const area = event.target.elements.area.value;
-    const grado = event.target.elements.grado.value;
+    registros.forEach(function (registro, index) {
+        const row = document.createElement("tr");
+        row.setAttribute("data-index", index);
 
-    const imagen1 = event.target.elements.imagen1.files[0];
-    const imagen2 = event.target.elements.imagen2.files[0];
+        const identificacionCell = document.createElement("td");
+        identificacionCell.textContent = registro.identificacion;
+        row.appendChild(identificacionCell);
 
-    const imagen1Base64 = await convertirImagenABase64(imagen1);
-    const imagen2Base64 = await convertirImagenABase64(imagen2);
+        const idInventarioCell = document.createElement("td");
+        idInventarioCell.textContent = registro.idInventario;
+        row.appendChild(idInventarioCell);
 
+        const serieCell = document.createElement("td");
+        serieCell.textContent = registro.serie;
+        row.appendChild(serieCell);
+
+        const modeloCell = document.createElement("td");
+        modeloCell.textContent = registro.modelo;
+        row.appendChild(modeloCell);
+
+        const nombreCell = document.createElement("td");
+        nombreCell.textContent = registro.nombre;
+        row.appendChild(nombreCell);
+
+        const apellidoCell = document.createElement("td");
+        apellidoCell.textContent = registro.apellido;
+        row.appendChild(apellidoCell);
+
+        const usuarioAdminCell = document.createElement("td");
+        usuarioAdminCell.textContent = registro.usuarioAdmin;
+        row.appendChild(usuarioAdminCell);
+
+        const fechaEntregaCell = document.createElement("td");
+        fechaEntregaCell.textContent = registro.fechaEntrega;
+        row.appendChild(fechaEntregaCell);
+
+        const tipoIpCell = document.createElement("td");
+        tipoIpCell.textContent = registro.tipoIp;
+        row.appendChild(tipoIpCell);
+
+        const ipCell = document.createElement("td");
+        ipCell.textContent = registro.ip;
+        row.appendChild(ipCell);
+
+        const areaCell = document.createElement("td");
+        areaCell.textContent = registro.area;
+        row.appendChild(areaCell);
+
+        const gradoCell = document.createElement("td");
+        gradoCell.textContent = registro.grado;
+        row.appendChild(gradoCell);
+
+        const accionesCell = document.createElement("td");
+
+        const btnEliminar = document.createElement("button");
+        btnEliminar.classList.add("btn", "btn-danger", "btn-sm");
+        btnEliminar.textContent = "Eliminar";
+        btnEliminar.addEventListener("click", function () {
+            eliminarRegistro(index);
+        });
+        accionesCell.appendChild(btnEliminar);
+
+        const btnEditar = document.createElement("button");
+        btnEditar.classList.add("btn", "btn-warning", "btn-sm", "ml-2");
+        btnEditar.textContent = "Editar";
+        btnEditar.addEventListener("click", function () {
+            mostrarPantallaRegistroParaEditar(index);
+        });
+        accionesCell.appendChild(btnEditar);
+
+        row.appendChild(accionesCell);
+
+        tablaRegistros.appendChild(row);
+    });
+}
+
+function agregarRegistro() {
     const registro = {
-      identificacion,
-      idInventario,
-      serie,
-      modelo,
-      nombre,
-      apellido,
-      usuarioAdmin,
-      fechaEntrega,
-      tipoIp,
-      ip,
-      area,
-      grado,
-      imagen1: imagen1Base64,
-      imagen2: imagen2Base64,
+        identificacion: formularioRegistro.identificacion.value,
+        idInventario: formularioRegistro.idInventario.value,
+        serie: formularioRegistro.serie.value,
+        modelo: formularioRegistro.modelo.value,
+        nombre: formularioRegistro.nombre.value,
+        apellido: formularioRegistro.apellido.value,
+        usuarioAdmin: formularioRegistro.usuarioAdmin.value,
+        fechaEntrega: formularioRegistro.fechaEntrega.value,
+        tipoIp: formularioRegistro.tipoIp.value,
+        ip: formularioRegistro.ip.value,
+        area: formularioRegistro.area.value,
+        grado: formularioRegistro.grado.value,
+        imagen1: formularioRegistro.imagen1.files[0] ? formularioRegistro.imagen1.files[0].name : "",
+        imagen2: formularioRegistro.imagen2.files[0] ? formularioRegistro.imagen2.files[0].name : ""
     };
 
-    guardarRegistro(registro);
-    agregarRegistroATabla(registro);
-    formularioRegistro.reset();
-  });
-
-  function agregarRegistroATabla(registro, index) {
-    const row = document.createElement("tr");
-    row.setAttribute("data-index", index);
-
-    Object.keys(registro).forEach(function (key) {
-      if (key === "imagen1" || key === "imagen2") {
-        return;
-      }
-      const cell = document.createElement("td");
-      cell.textContent = registro[key];
-      row.appendChild(cell);
-    });
-
-    const accionesCell = document.createElement("td");
-
-    const btnEliminar = document.createElement("button");
-    btnEliminar.setAttribute("data-index", index);
-    btnEliminar.setAttribute("id", "btn-eliminar-" + index);
-    btnEliminar.textContent = "Eliminar";
-    btnEliminar.addEventListener("click", eliminarRegistro);
-    accionesCell.appendChild(btnEliminar);
-
-    const btnEditar = document.createElement("button");
-    btnEditar.setAttribute("data-index", index);
-    btnEditar.setAttribute("id", "btn-editar-" + index);
-    btnEditar.textContent = "Editar";
-    btnEditar.addEventListener("click", editarRegistro);
-    accionesCell.appendChild(btnEditar);
-
-    row.appendChild(accionesCell);
-    tablaRegistros.appendChild(row);
-  }
-
-  function guardarRegistro(registro) {
-    let registros = JSON.parse(localStorage.getItem("registros")) || [];
     registros.push(registro);
     localStorage.setItem("registros", JSON.stringify(registros));
-  }
 
-  function agregarRegistroATabla(registro) {
-    const row = document.createElement("tr");
+    formularioRegistro.reset();
 
-    Object.keys(registro).forEach(function (key) {
-      if (key === "imagen1" || key === "imagen2") {
-        return;
-      }
-      const cell = document.createElement("td");
-      cell.textContent = registro[key];
-      row.appendChild(cell);
-    });
+    cargarRegistrosEnTabla();
 
-    tablaRegistros.appendChild(row);
     mostrarPantallaTabla();
-  }
+}
 
-  function mostrarPantallaRegistro() {
-    pantallaRegistro.style.display = "block";
-    pantallaTabla.style.display = "none";
-  }
+function eliminarRegistro(index) {
+    if (confirm("¿Está seguro que desea eliminar este registro?")) {
+        registros.splice(index, 1);
+        localStorage.setItem("registros", JSON.stringify(registros));
 
-  function mostrarPantallaTabla() {
-    pantallaRegistro.style.display = "none";
-    pantallaTabla.style.display = "block";
-  }
+        cargarRegistrosEnTabla();
+    }
+}
 
-  async function convertirImagenABase64(imagen) {
-    return new Promise((resolve, reject) => {
-      if (!imagen) {
-        resolve(null);
-        return;
-      }
+function mostrarPantallaRegistro() {
+    document.getElementById("pantalla-registro").style.display = "block";
+    document.getElementById("pantalla-tabla").style.display = "none";
 
-      const reader = new FileReader();
-      reader.readAsDataURL(imagen);
-      reader.onload = function () {
-        resolve(reader.result);
-      };
-      reader.onerror = function (error) {
-        reject(error);
-      };
+    btnGuardar.textContent = "Guardar";
+    formularioRegistro.reset();
+}
+
+function mostrarPantallaTabla() {
+    document.getElementById("pantalla-registro").style.display = "none";
+    document.getElementById("pantalla-tabla").style.display = "block";
+
+    cargarRegistrosEnTabla();
+}
+
+function mostrarPantallaRegistroParaEditar(index) {
+    mostrarPantallaRegistro();
+
+    const registro = registros[index];
+
+    formularioRegistro.identificacion.value = registro.identificacion;
+    formularioRegistro.idInventario.value = registro.idInventario;
+    formularioRegistro.serie.value = registro.serie;
+    formularioRegistro.modelo.value = registro.modelo;
+    formularioRegistro.nombre.value = registro.nombre;
+    formularioRegistro.apellido.value = registro.apellido;
+    formularioRegistro.usuarioAdmin.value = registro.usuarioAdmin;
+    formularioRegistro.fechaEntrega.value = registro.fechaEntrega;
+    formularioRegistro.tipoIp.value = registro.tipoIp;
+    formularioRegistro.ip.value = registro.ip;
+    formularioRegistro.area.value = registro.area;
+    formularioRegistro.grado.value = registro.grado;
+
+    btnGuardar.textContent = "Actualizar";
+    btnGuardar.removeEventListener("click", agregarRegistro);
+    btnGuardar.addEventListener("click", function () {
+        actualizarRegistro(index);
     });
-  }
-});
+}
+
+function actualizarRegistro(index) {
+    const registro = {
+        identificacion: formularioRegistro.identificacion.value,
+        idInventario: formularioRegistro.idInventario.value,
+        serie: formularioRegistro.serie.value,
+        modelo: formularioRegistro.modelo.value,
+        nombre: formularioRegistro.nombre.value,
+        apellido: formularioRegistro.apellido.value,
+        usuarioAdmin: formularioRegistro.usuarioAdmin.value,
+        fechaEntrega: formularioRegistro.fechaEntrega.value,
+        tipoIp: formularioRegistro.tipoIp.value,
+        ip: formularioRegistro.ip.value,
+        area: formularioRegistro.area.value,
+        grado: formularioRegistro.grado.value,
+        imagen1: formularioRegistro.imagen1.files[0] ? formulaireRegistro.imagen1.files[0].name : "",
+        imagen2: formulaireRegistro.imagen2.files[0] ? formulaireRegistro.imagen2.files[0].name : ""
+    };
+
+    registros[index] = registro;
+    localStorage.setItem("registros", JSON.stringify(registros));
+
+    formularioRegistro.reset();
+
+    cargarRegistrosEnTabla();
+
+    mostrarPantallaTabla();
+}
+
+btnGuardar.addEventListener("click", agregarRegistro);
+btnCancelar.addEventListener("click", mostrarPantallaTabla);
+btnRegresar.addEventListener("click", mostrarPantallaRegistro);
+
+mostrarPantallaTabla();
+
