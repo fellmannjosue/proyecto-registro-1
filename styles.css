@@ -83,12 +83,48 @@ button.btn.btn-primary:hover {
 }
 
 #tabla-registros {
-  width: 800px;
-  margin: 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+/* Estilos para los botones de la tabla */
+#tabla-registros button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 0;
+  text-decoration: underline;
+}
+#tabla-registros button:hover {
+  text-decoration: none;
 }
 
 #tabla-registros th,
 #tabla-registros td {
+  border: 1px solid #ddd;
   padding: 8px;
+}
+
+#tabla-registros th {
+  background-color: #f2f2f2;
+}
+
+#tabla-registros td:nth-child(1),
+#tabla-registros td:nth-child(2),
+#tabla-registros td:nth-child(4),
+#tabla-registros td:nth-child(8),
+#tabla-registros td:nth-child(9) {
+  text-align: center;
+}
+
+#tabla-registros td:nth-child(3),
+#tabla-registros td:nth-child(5),
+#tabla-registros td:nth-child(6),
+#tabla-registros td:nth-child(7),
+#tabla-registros td:nth-child(10),
+#tabla-registros td:nth-child(11),
+#tabla-registros td:nth-child(12) {
   text-align: left;
 }
