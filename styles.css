@@ -77,3 +77,18 @@ button.btn.btn-primary:hover {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
+#pantalla-tabla {
+  display: none;
+  text-align: center;
+}
+
+#tabla-registros {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#tabla-registros th,
+#tabla-registros td {
+  padding: 8px;
+  text-align: left;
+}
