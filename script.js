@@ -125,7 +125,6 @@ function editarRegistro(event) {
 
 formularioRegistro.addEventListener("submit", guardarRegistro);
 btnRegresarARegistro.addEventListener("click", mostrarPantallaRegistro);
-btnAgregarRegistro.addEventListener("click", mostrarPantallaRegistro);
 
 cargarRegistros();
 mostrarPantallaTabla();
