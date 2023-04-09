@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const tablaRegistros = document.getElementById("tabla-registros");
 
   // Ejemplo de botones para cambiar entre pantallas
+  const btnIrATabla = document.getElementById("btn-ir-a-tabla");
+  const btnIrARegistro = document.getElementById("btn-ir-a-registro");
   const btnRegresarARegistro = document.getElementById("btn-regresar-a-registro");
     btnRegresarARegistro.addEventListener("click", mostrarPantallaRegistro);
 
