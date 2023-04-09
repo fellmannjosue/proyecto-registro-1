@@ -10,18 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   btnRegresarARegistro.addEventListener("click", mostrarPantallaRegistro);
 
 
-  function mostrarPantallaRegistro() {
-    document.getElementById("pantalla-registro").style.display = "block";
-    document.getElementById("pantalla-tabla").style.display = "none";
-}
-
-function mostrarPantallaTabla() {
-    document.getElementById("pantalla-registro").style.display = "none";
-    document.getElementById("pantalla-tabla").style.display = "block";
-}
-
-
-
   btnIrATabla.addEventListener("click", mostrarPantallaTabla);
   btnIrARegistro.addEventListener("click", mostrarPantallaRegistro);
 
