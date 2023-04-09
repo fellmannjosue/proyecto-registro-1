@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   btnIrATabla.addEventListener("click", mostrarPantallaTabla);
-  btnIrARegistro.addEventListener("click", mostrarPantallaRegistro);
 
   formularioRegistro.addEventListener("submit", async function (event) {
     event.preventDefault();
