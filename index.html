@@ -1,244 +1,207 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
+
+<head>
+  <meta charset="UTF-8">
   <title>Registro Inventariado</title>
   <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2897/2897763.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="styles.css" />
-  
-  </head>
 
-  <body>
-    <div id="app">
-      <div id="pantalla-registro">
-        <div class="card">
-          <div class="card-header">
-            <img
-              src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png"
-              alt="Inventariado"
-              class="imagen-encabezado"
-            />
-            <h3>
-              Registro de Inventariado de las Computadora de Asociacion Nuevo
-              Amanecer
-            </h3>
-          </div>
-          <div class="card-body">
-            <form id="formulario-registro">
-              <div class="form-group">
-                <label for="identificacion">Identificación:</label>
-                <select
-                  class="form-control"
-                  id="identificacion"
-                  name="identificacion"
-                >
-                  <option value=""></option>
-                  <option value="ANAAIO">ANAAIO</option>
-                  <option value="ANALAP">ANALAP</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="idInventario">ID Inventario:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="idInventario"
-                  name="idInventario"
-                />
-              </div>
-              <div class="form-group">
-                <label for="serie">Serie:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="serie"
-                  name="serie"
-                />
-              </div>
-              <div class="form-group">
-                <label for="modelo">Modelo:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="modelo"
-                  name="modelo"
-                />
-              </div>
-              <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="nombre"
-                  name="nombre"
-                />
-              </div>
-              <div class="form-group">
-                <label for="apellido">Apellido:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="apellido"
-                  name="apellido"
-                />
-              </div>
-              <div class="form-group">
-                <label for="usuarioAdmin">Usuario Admin que entregó:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="usuarioAdmin"
-                  name="usuarioAdmin"
-                />
-              </div>
-              <div class="form-group">
-                <label for="fechaEntrega">Fecha de entrega:</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="fechaEntrega"
-                  name="fechaEntrega"
-                />
-              </div>
-              <div class="form-group">
-                <label for="tipoIp">Tipo de IP:</label>
-                <select class="form-control" id="tipoIp" name="tipoIp">
-                  <option value=""></option>
-                  <option value="DHCP">DHCP</option>
-                  <option value="estatica">Estática</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="ip">IP:</label>
-                <input type="text" class="form-control" id="ip" name="ip" />
-              </div>
-              <div class="form-group">
-                <label for="area">Área:</label>
-                <select class="form-control" id="area" name="area">
-                  <option value=""></option>
-                  <option value="Area Bilingue">Área Bilingue</option>
-                  <option value="Área Colegio">Área Colegio</option>
-                  <option value="Área Administracion">
-                    Área Administracion
-                  </option>
-                  <option value="Área Laboratorio">Área Laboratorio</option>
-                  <option value="Área CFP">Área CFP</option>
-                  <!-- Aquí puedes agregar más opciones para el área -->
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="grado">Grado:</label>
-                <select class="form-control" id="grado" name="grado">
-                  <option value=""></option>
-                  <option value="administracion direccion">
-                    administracion direccion
-                  </option>
-                  <option value="administracion secretaria">
-                    administracion secretaria
-                  </option>
-                  <option value="administracion">administracion</option>
-                  <option value="equipo instructor">equipo instructor</option>
-                  <option value="I bachillerato">I bachillerato</option>
-                  <option value="II bachillerato">II bachillerato</option>
-                  <option value="Laboratorio de ciencias">
-                    Laboratorio de ciencias
-                  </option>
-                  <option value="Español">Español</option>
-                  <option value="Matematicas">Matematicas</option>
-                  <option value="estudios sociales">estudios sociales</option>
-                  <option value="Ingles basico">Ingles basico</option>
-                  <option value="Laboratorio CFP">Laboratorio CFP</option>
-                  <option value="Laboratorio Col">Laboratorio Col</option>
-                  <option value="Laboratorio BL">Laboratorio BL</option>
-                  <option value="Ingles avanzado">Ingles avanzado</option>
-                  <option value="Kinder">Kinder</option>
-                  <option value="Prepa 1">Prepa 1</option>
-                  <option value="Prepa 2">Prepa 2</option>
-                  <option value="primero 1">primero 1</option>
-                  <option value="primero 2">primero 2</option>
-                  <option value="segundo 1">segundo 1</option>
-                  <option value="segundo 2">segundo 2</option>
-                  <option value="tecero 1">tecero 1</option>
-                  <option value="tecero 2">tercero 2</option>
-                  <option value="cuarto 1">cuarto 1</option>
-                  <option value="cuarto 2">cuarto 2</option>
-                  <option value="quinto 1">quinto 1</option>
-                  <option value="quinto 2">quinto 2</option>
-                  <option value="sexto 1">sexto 1</option>
-                  <option value="sexto 2">sexto 2</option>
-                  <option value="septimo">septimo</option>
-                  <option value="octavo">octavo</option>
-                  <option value="noveno">noveno</option>
-                  <!-- Aquí puedes agregar más opciones para el grado -->
-                </select>
-              </div>
-             
-              <button type="submit" class="btn btn-primary">Registrar</button>
+</head>
 
-              <button id="btn-ir-a-tabla">Ir a la tabla</button>
-            </form>
-          </div>
-          <div class="card-footer">
-            Todos los dercehos resevados &copy; desarollador de Asociacion Nuevo
+<body>
+  <div id="app">
+    <div id="pantalla-registro">
+      <div class="card">
+        <div class="card-header">
+          <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
+            class="imagen-encabezado" />
+          <h3>
+            Registro de Inventariado de las Computadora de Asociacion Nuevo
             Amanecer
-          </div>
+          </h3>
         </div>
-      </div>
-      <div id="pantalla-tabla" style="display: none">
-        <div class="card">
-          <div class="card-header">
-            <img
-              src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png"
-              alt="Inventariado"
-              class="imagen-encabezado"
-            />
-            <h3>
-              Inventariado de las Computadora de Asociacion Nuevo Amanecer
-            </h3>
-          </div>
-          <div class="card-body">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Identificación</th>
-                  <th scope="col">ID Inventario</th>
-                  <th scope="col">Serie</th>
-                  <th scope="col">Modelo</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Apellido</th>
-                  <th scope="col">Usuario Admin</th>
-                  <th scope="col">Fecha de entrega</th>
-                  <th scope="col">Tipo de IP</th>
-                  <th scope="col">IP</th>
-                  <th scope="col">Área</th>
-                  <th scope="col">Grado</th>
-                  <th scope="col">Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="tabla-registros">
-                <!-- Aquí se agregarán las filas de la tabla dinámicamente -->
-              </tbody>
-            </table>
-            <button id="btn-regresar-a-registro">Regresar al registro</button>
+        <div class="card-body">
+          <form id="formulario-registro">
+            <div class="form-group">
+              <label for="identificacion">Identificación:</label>
+              <select class="form-control" id="identificacion" name="identificacion">
+                <option value=""></option>
+                <option value="ANAAIO">ANAAIO</option>
+                <option value="ANALAP">ANALAP</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="idInventario">ID Inventario:</label>
+              <input type="text" class="form-control" id="idInventario" name="idInventario" />
+            </div>
+            <div class="form-group">
+              <label for="serie">Serie:</label>
+              <input type="text" class="form-control" id="serie" name="serie" />
+            </div>
+            <div class="form-group">
+              <label for="modelo">Modelo:</label>
+              <input type="text" class="form-control" id="modelo" name="modelo" />
+            </div>
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" />
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido:</label>
+              <input type="text" class="form-control" id="apellido" name="apellido" />
+            </div>
+            <div class="form-group">
+              <label for="usuarioAdmin">Usuario Admin que entregó:</label>
+              <input type="text" class="form-control" id="usuarioAdmin" name="usuarioAdmin" />
+            </div>
+            <div class="form-group">
+              <label for="fechaEntrega">Fecha de entrega:</label>
+              <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" />
+            </div>
+            <div class="form-group">
+              <label for="tipoIp">Tipo de IP:</label>
+              <select class="form-control" id="tipoIp" name="tipoIp">
+                <option value=""></option>
+                <option value="DHCP">DHCP</option>
+                <option value="estatica">Estática</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ip">IP:</label>
+              <input type="text" class="form-control" id="ip" name="ip" />
+            </div>
+            <div class="form-group">
+              <label for="area">Área:</label>
+              <select class="form-control" id="area" name="area">
+                <option value=""></option>
+                <option value="Area Bilingue">Área Bilingue</option>
+                <option value="Área Colegio">Área Colegio</option>
+                <option value="Área Administracion">
+                  Área Administracion
+                </option>
+                <option value="Laboratorios">Laboratorios</option>
+                <option value="Área CFP">Área CFP</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="grado">Grado:</label>
+              <select class="form-control" id="grado" name="grado">
+                <option value=""></option>
+                <!-- ADMIN -->
+                <option value="administracion direccion">
+                  administracion direccion
+                </option>
+                <option value="administracion secretaria">
+                  administracion secretaria
+                </option>
+                <option value="administracion">administracion</option>
+                <!-- CFP -->
+                <option value="equipo instructor">equipo instructor</option>
+                <!--COL-->
+                <option value="I bachillerato">I bachillerato</option>
+                <option value="II bachillerato">II bachillerato</option>
+                <option value="Laboratorio de ciencias">
+                  Laboratorio de ciencias
+                </option>
+                <option value="Español">Español</option>
+                <option value="Matematicas">Matematicas</option>
+                <option value="estudios sociales">estudios sociales</option>
+                <option value="Ingles basico">Ingles basico</option>
+                <!--LABS-->
+                <option value="Laboratorio CFP">Laboratorio CFP</option>
+                <option value="Laboratorio Col">Laboratorio Col</option>
+                <option value="Laboratorio BL">Laboratorio BL</option>
+                <!--BL-->
+                <option value="Ingles avanzado">Ingles avanzado</option>
+                <option value="Kinder">Kinder</option>
+                <option value="Prepa 1">Prepa 1</option>
+                <option value="Prepa 2">Prepa 2</option>
+                <option value="primero 1">primero 1</option>
+                <option value="primero 2">primero 2</option>
+                <option value="segundo 1">segundo 1</option>
+                <option value="segundo 2">segundo 2</option>
+                <option value="tecero 1">tecero 1</option>
+                <option value="tecero 2">tercero 2</option>
+                <option value="cuarto 1">cuarto 1</option>
+                <option value="cuarto 2">cuarto 2</option>
+                <option value="quinto 1">quinto 1</option>
+                <option value="quinto 2">quinto 2</option>
+                <option value="sexto 1">sexto 1</option>
+                <option value="sexto 2">sexto 2</option>
+                <option value="septimo">septimo</option>
+                <option value="octavo">octavo</option>
+                <option value="noveno">noveno</option>
+                <option value="Matematicas BL 1">Matematicas BL 1</option>
+                <option value="Matematicas BL 2">Matematicas BL 2</option>
+                <option value="Matematicas BL 3">Matematicas BL 3</option>
+              </select>
+            </div>
 
-          </div>
-          <div class="card-footer">
-            Todos los dercehos resevados &copy; desarollador de Asociacion Nuevo
-            Amanecer
-          </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+
+            <button id="btn-ir-a-tabla">Ir a la tabla</button>
+          </form>
+        </div>
+        <div class="card-footer">
+          Todos los dercehos resevados &copy; desarollador de Asociacion Nuevo
+          Amanecer
         </div>
       </div>
     </div>
+    <div id="pantalla-tabla" style="display: none">
+      <div class="card">
+        <div class="card-header">
+          <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
+            class="imagen-encabezado" />
+          <h3>
+            Inventariado de las Computadora de Asociacion Nuevo Amanecer
+          </h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Identificación</th>
+                <th scope="col">ID Inventario</th>
+                <th scope="col">Serie</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Usuario Admin</th>
+                <th scope="col">Fecha de entrega</th>
+                <th scope="col">Tipo de IP</th>
+                <th scope="col">IP</th>
+                <th scope="col">Área</th>
+                <th scope="col">Grado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-registros">
+              <!-- Aquí se agregarán las filas de la tabla dinámicamente -->
+            </tbody>
+          </table>
+          <button id="btn-regresar-a-registro">Regresar al registro</button>
 
-        
-       
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+        </div>
+        <div class="card-footer">
+          Todos los dercehos resevados &copy; desarollador de Asociacion Nuevo
+          Amanecer
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <script src="script.js"></script>
+</body>
+
 </html>
