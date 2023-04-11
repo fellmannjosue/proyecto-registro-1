@@ -1,22 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { Registro } from '../models/registro.model';
+import { RegistroService } from '../services/registros.service';
+import * as XLSX from 'xlsx';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { TDocumentDefinitions, StyleDictionary, Style } from 'pdfmake/interfaces';
 
-interface Registro {
-  identificacion: string;
-  idInventario: string;
-  serie: string;
-  modelo: string;
-  siglas: string;
-  usuario: string;
-  usuarioAdmin: string;
-  fechaEntrega: Date;
-  entregado: boolean;
-  ipEstatus: string;
-  direccionIp: string;
-  area: string;
-  cargo: string;
-  aula: string;
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+interface CustomStyleDictionary extends StyleDictionary {
+  header: Style;
 }
 
 @Component({
@@ -25,19 +19,52 @@ interface Registro {
   styleUrls: ['./tabla.component.scss'],
 })
 export class TablaComponent implements OnInit {
-  registros: Observable<Registro[]>;
+  displayedColumns: string[] = ['identificacion', 'idInventario', 'modelo', 'serie', 'direccionIp', 'usuario', 'adminEntrego', 'fechaEntrega'];
+  dataSource = new MatTableDataSource<Registro>();
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private registroService: RegistroService) {}
 
-  ngOnInit() {
-    this.registros = this.db.list<Registro>('registros').valueChanges();
+  ngOnInit(): void {
+    this.registroService.getRegistros().subscribe((registros) => {
+      this.dataSource.data = registros;
+    });
   }
 
-  exportarExcel() {
-    // Aquí va la lógica para exportar los datos a Excel
+  exportarExcel(): void {
+    const registrosArray = this.dataSource.data.map((registro) => {
+      return Object.values(registro);
+    });
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(registrosArray);
+    XLSX.utils.book_append_sheet(wb, ws, 'Registros');
+    XLSX.writeFile(wb, 'registros.xlsx');
   }
 
-  exportarPDF() {
-    // Aquí va la lógica para exportar los datos a PDF
+  exportarPDF(): void {
+    const columnHeaders = this.displayedColumns.map((column) => column.toUpperCase());
+    const tableData = this.dataSource.data.map((registro) => Object.values(registro));
+
+    const docDefinition: TDocumentDefinitions = {
+      content: [
+        { text: 'Reporte de Registros', style: 'header' },
+        {
+          table: {
+            headerRows: 1,
+            widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+            body: [columnHeaders, ...tableData],
+          },
+        },
+      ],
+      styles: {
+        header: {
+          fontSize: 14,
+          bold: true,
+          margin: [0, 0, 0, 0],
+        },
+      } as CustomStyleDictionary,
+    };
+
+    pdfMake.createPdf(docDefinition).download('registros.pdf');
   }
 }
