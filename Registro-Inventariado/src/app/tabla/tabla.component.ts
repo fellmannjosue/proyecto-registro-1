@@ -3,8 +3,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Registro } from '../models/registro.model';
 import { RegistroService } from '../services/registros.service';
 import * as XLSX from 'xlsx';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import *as pdfMakeLib from 'pdfmake/build/pdfmake';
+import* as pdfFonts from 'pdfmake/build/vfs_fonts';
+
+const pdfMake = pdfMakeLib;
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { TDocumentDefinitions, StyleDictionary, Style } from 'pdfmake/interfaces';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;

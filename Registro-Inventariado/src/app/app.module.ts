@@ -10,9 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './registro/registro.component';
 import { TablaComponent } from './tabla/tabla.component';

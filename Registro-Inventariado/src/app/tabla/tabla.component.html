@@ -22,7 +22,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let registro of registro | async" [ngClass]="{'table-success': registro.entregado, 'table-danger': !registro.entregado}">
+          <tr *ngFor="let registro of registro | async" [ngClass]="
+          {'table-success': registro.entregado, 'table-danger': !registro.entregado}">
             <td>{{ registro.identificacion }}</td>
             <td>{{ registro.idInventario }}</td>
             <td>{{ registro.modelo }}</td>
