@@ -29,7 +29,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let registro of registro | async" [ngClass]="
+        <tr *ngFor="let registro of dataSource.data" [ngClass]="
           {'table-success': registro.entregado, 'table-danger': !registro.entregado}">
           <td>{{ registro.identificacion }}</td>
           <td>{{ registro.idInventario }}</td>
