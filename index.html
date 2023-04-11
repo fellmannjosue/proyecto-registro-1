@@ -8,9 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="styles.css" />
+<!-- Agregue estas líneas al encabezado de su HTML -->
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-firestore.js"></script>
 
 </head>
-
 <body>
   <div id="app">
     <div id="pantalla-registro">
@@ -46,12 +48,12 @@
               <input type="text" class="form-control" id="modelo" name="modelo" />
             </div>
             <div class="form-group">
-              <label for="nombre">Nombre:</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" />
+              <label for="siglas">Siglas:</label>
+              <input type="text" class="form-control" id="siglas" name="siglas" />
             </div>
             <div class="form-group">
-              <label for="apellido">Apellido:</label>
-              <input type="text" class="form-control" id="apellido" name="apellido" />
+              <label for="usuario">Usuario:</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" />
             </div>
             <div class="form-group">
               <label for="usuarioAdmin">Usuario Admin que entregó:</label>
@@ -61,31 +63,45 @@
               <label for="fechaEntrega">Fecha de entrega:</label>
               <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" />
             </div>
-            <div class="form-group">
-              <label for="tipoIp">Tipo de IP:</label>
-              <select class="form-control" id="tipoIp" name="tipoIp">
-                <option value=""></option>
-                <option value="DHCP">DHCP</option>
-                <option value="Estatica">Estática</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="ip">IP:</label>
-              <input type="text" class="form-control" id="ip" name="ip" />
-            </div>
-            <div class="form-group">
-              <label for="area">Área:</label>
-              <select class="form-control" id="area" name="area">
-                <option value=""></option>
-                <option value="Area Bilingue">Área Bilingue</option>
-                <option value="Área Colegio">Área Colegio</option>
-                <option value="Área Administracion">
-                  Área Administracion
-                </option>
-                <option value="Laboratorios">Laboratorios</option>
-                <option value="Área CFP">Área CFP</option>
-              </select>
-            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="entregado" id="entregado" name="estado">
+              <label class="form-check-label" for="entregado">Entregado</label>
+          </div>
+          <div class="form-group">
+            <label for="tipoIp">Tipo de IP:</label>
+            <select class="form-control" id="tipoIp" name="tipoIp">
+              <option value=""></option>
+              <option value="DHCP">DHCP</option>
+              <option value="Estatica">Estática</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ip">IP:</label>
+            <input type="text" class="form-control" id="ip" name="ip" />
+          </div>
+          <div class="form-group">
+            <label for="area">Área:</label>
+            <select class="form-control" id="area" name="area">
+              <option value=""></option>
+              <option value="Area Bilingue">Área Bilingue</option>
+              <option value="Área Colegio">Área Colegio</option>
+              <option value="Área Administracion">
+                Área Administracion
+              </option>
+              <option value="Laboratorios">Laboratorios</option>
+              <option value="Área CFP">Área CFP</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="aula">Aula:</label>
+            <select class="form-control" id="aula" name="aula">
+              <option value=""></option>
+              <!-- Aquí puedes agregar las opciones de aula -->
+              <option value="Aula 1">Aula 1</option>
+              <option value="Aula 2">Aula 2</option>
+              <option value="Aula 3">Aula 3</option>
+            </select>
+          </div>
             <div class="form-group">
               <label for="grado">Grado:</label>
               <select class="form-control" id="grado" name="grado">
@@ -158,6 +174,8 @@
             class="imagen-encabezado" />
           <h3>
             Inventariado de las Computadora de Asociacion Nuevo Amanecer
+           
+
           </h3>
         </div>
         <div class="card-body">
@@ -176,6 +194,8 @@
                 <th scope="col">IP</th>
                 <th scope="col">Área</th>
                 <th scope="col">Grado</th>
+                <th scope="col">Aula</th>
+                <th scope="col">Entregado</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
@@ -184,7 +204,7 @@
             </tbody>
           </table>
           <button id="btn-regresar-a-registro">Regresar al registro</button>
-
+    
         </div>
         <div class="card-footer">
           Todos los dercehos resevados &copy; desarollador de Asociacion Nuevo
@@ -192,16 +212,12 @@
         </div>
       </div>
     </div>
+    
   </div>
-
-
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,40 @@
+<div class="card mt-5">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <h2>Registros</h2>
+        <div>
+          <button mat-raised-button color="primary" (click)="exportarExcel()">Exportar Excel</button>
+          <button mat-raised-button color="primary" (click)="exportarPDF()">Exportar PDF</button>
+        </div>
+      </div>
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr>
+            <th>Identificación</th>
+            <th>ID Inventario</th>
+            <th>Modelo</th>
+            <th>Serie</th>
+            <th>Dirección IP</th>
+            <th>Usuario</th>
+            <th>Admin que entregó</th>
+            <th>Fecha</th>
+            <th>Entregado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let registro of registros" [ngClass]="{'table-success': registro.entregado, 'table-danger': !registro.entregado}">
+            <td>{{ registro.identificacion }}</td>
+            <td>{{ registro.idInventario }}</td>
+            <td>{{ registro.modelo }}</td>
+            <td>{{ registro.serie }}</td>
+            <td>{{ registro.direccionIp }}</td>
+            <td>{{ registro.usuario }}</td>
+            <td>{{ registro.usuarioAdmin }}</td>
+            <td>{{ registro.fechaEntrega | date }}</td>
+            <td>{{ registro.entregado ? '✔️' : '❌' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
