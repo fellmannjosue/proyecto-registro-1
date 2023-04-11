@@ -21,7 +21,7 @@ interface Registro {
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.scss'],
+  styleUrls: ['./registro.component.css'],
 })
 export class RegistroComponent {
   registro: Registro = {
@@ -41,7 +41,7 @@ export class RegistroComponent {
     aula: '',
   };
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase) { }
 
   onSubmit() {
     this.db.list('registros').push(this.registro).then(() => {

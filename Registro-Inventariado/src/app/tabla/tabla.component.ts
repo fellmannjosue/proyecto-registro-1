@@ -4,7 +4,7 @@ import { Registro } from '../models/registro.model';
 import { RegistroService } from '../services/registros.service';
 import * as XLSX from 'xlsx';
 import *as pdfMakeLib from 'pdfmake/build/pdfmake';
-import* as pdfFonts from 'pdfmake/build/vfs_fonts';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 const pdfMake = pdfMakeLib;
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -19,13 +19,14 @@ interface CustomStyleDictionary extends StyleDictionary {
 @Component({
   selector: 'app-tabla',
   templateUrl: './tabla.component.html',
-  styleUrls: ['./tabla.component.scss'],
+  styleUrls: ['./tabla.component.css']
 })
 export class TablaComponent implements OnInit {
+
   displayedColumns: string[] = ['identificacion', 'idInventario', 'modelo', 'serie', 'direccionIp', 'usuario', 'adminEntrego', 'fechaEntrega'];
   dataSource = new MatTableDataSource<Registro>();
 
-  constructor(private registroService: RegistroService) {}
+  constructor(private registroService: RegistroService) { }
 
   ngOnInit(): void {
     this.registroService.getRegistros().subscribe((registros) => {

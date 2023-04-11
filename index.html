@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Registro Inventariado</title>
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2897/2897763.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+<!-- Agregue estas líneas al encabezado de su HTML -->
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-firestore.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    <div id="pantalla-registro">
+      <div class="card">
+        <div class="card-header">
+          <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
+            class="imagen-encabezado" />
+          <h3>
+            Registro de Inventariado de las Computadora de Asociacion Nuevo
+            Amanecer
+          </h3>
+        </div>
+        <div class="card-body">
+          <form id="formulario-registro">
+            <div class="form-group">
+              <label for="identificacion">Identificación:</label>
+              <select class="form-control" id="identificacion" name="identificacion">
+                <mat-option value=""></mat-option>
+                <mat-option value="ANAAIO">ANAAIO</mat-option>
+                <mat-option value="ANALAP">ANALAP</mat-option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="idInventario">ID Inventario:</label>
+              <input type="text" class="form-control" id="idInventario" name="idInventario" />
+            </div>
+            <div class="form-group">
+              <label for="serie">Serie:</label>
+              <input type="text" class="form-control" id="serie" name="serie" />
+            </div>
+            <div class="form-group">
+              <label for="modelo">Modelo:</label>
+              <input type="text" class="form-control" id="modelo" name="modelo" />
+            </div>
+            <div class="form-group">
+              <label for="siglas">Siglas:</label>
+              <input type="text" class="form-control" id="siglas" name="siglas" />
+            </div>
+            <div class="form-group">
+              <label for="usuario">Usuario:</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" />
+            </div>
+            <div class="form-group">
+              <label for="usuarioAdmin">Usuario Admin que entregó:</label>
+              <input type="text" class="form-control" id="usuarioAdmin" name="usuarioAdmin" />
+            </div>
+            <div class="form-group">
+              <label for="fechaEntrega">Fecha de entrega:</label>
+              <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" />
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="entregado" id="entregado" name="estado">
+              <label class="form-check-label" for="entregado">Entregado</label>
+          </div>
+          <div class="form-group">
+            <label for="tipoIp">Tipo de IP:</label>
+            <select class="form-control" id="tipoIp" name="tipoIp">
+              <mat-option value=""></mat-option>
+              <mat-option value="DHCP">DHCP</mat-option>
+              <mat-option value="Estatica">Estática</mat-option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ip">IP:</label>
+            <input type="text" class="form-control" id="ip" name="ip" />
+          </div>
+          <div class="form-group">
+            <label for="area">Área:</label>
+            <select class="form-control" id="area" name="area">
+              <mat-option value=""></mat-option>
+              <mat-option value="Area Bilingue">Área Bilingue</mat-option>
+              <mat-option value="Área Colegio">Área Colegio</mat-option>
+              <mat-option value="Área Administracion">
+                Área Administracion
+              </mat-option>
+              <mat-option value="Laboratorios">Laboratorios</mat-option>
+              <mat-option value="Área CFP">Área CFP</mat-option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="aula">Aula:</label>
+            <select class="form-control" id="aula" name="aula">
+              <mat-option value=""></mat-option>
+              <!-- Aquí puedes agregar las opciones de aula -->
+              <mat-option value="Aula 1">Aula 1</mat-option>
+              <mat-option value="Aula 2">Aula 2</mat-option>
+              <mat-option value="Aula 3">Aula 3</mat-option>
+            </select>
+          </div>
+            <div class="form-group">
+              <label for="grado">Grado:</label>
+              <select class="form-control" id="grado" name="grado">
+                <mat-option value=""></mat-option>
+                <!-- ADMIN -->
+                <mat-option value="Administracion direccion">
+                  Administracion direccion
+                </mat-option>
+                <mat-option value="Administracion secretaria">
+                  Administracion secretaria
+                </mat-option>
+                <mat-option value="Administracion">Administracion</mat-option>
+                <!-- CFP -->
+                <mat-option value="Equipo Instructor">Equipo Instructor</mat-option>
+                <!--COL-->
+                <mat-option value="I Bachillerato">I Bachillerato</mat-option>
+                <mat-option value="II Bachillerato">II Bachillerato</mat-option>
+                <mat-option value="Laboratorio de Ciencias">
+                  Laboratorio de ciencias
+                </mat-option>
+                <mat-option value="Español">Español</mat-option>
+                <mat-option value="Matematicas">Matematicas</mat-option>
+                <mat-option value="estudios sociales">estudios sociales</mat-option>
+                <mat-option value="Ingles basico">Ingles basico</mat-option>
+                <!--LABS-->
+                <mat-option value="Laboratorio CFP">Laboratorio CFP</mat-option>
+                <mat-option value="Laboratorio Col">Laboratorio Col</mat-option>
+                <mat-option value="Laboratorio BL">Laboratorio BL</mat-option>
+                <!--BL-->
+                <mat-option value="Ingles Avanzado">Ingles Avanzado</mat-option>
+                <mat-option value="Kinder">Kinder</mat-option>
+                <mat-option value="Prepa 1">Prepa 1</mat-option>
+                <mat-option value="Prepa 2">Prepa 2</mat-option>
+                <mat-option value="Primero 1">Primero 1</mat-option>
+                <mat-option value="Primero 2">Primero 2</mat-option>
+                <mat-option value="Segundo 1">Segundo 1</mat-option>
+                <mat-option value="Segundo 2">Segundo 2</mat-option>
+                <mat-option value="Tecero 1">Tecero 1</mat-option>
+                <mat-option value="Tecero 2">Tercero 2</mat-option>
+                <mat-option value="Cuarto 1">Cuarto 1</mat-option>
+                <mat-option value="Cuarto 2">Cuarto 2</mat-option>
+                <mat-option value="Quinto 1">Quinto 1</mat-option>
+                <mat-option value="Quinto 2">Quinto 2</mat-option>
+                <mat-option value="Sexto 1">Sexto 1</mat-option>
+                <mat-option value="Sexto 2">Sexto 2</mat-option>
+                <mat-option value="Septimo">Septimo</mat-option>
+                <mat-option value="Octavo">Octavo</mat-option>
+                <mat-option value="Noveno">Noveno</mat-option>
+                <mat-option value="Matematicas BL 1">Matematicas BL 1</mat-option>
+                <mat-option value="Matematicas BL 2">Matematicas BL 2</mat-option>
+                <mat-option value="Matematicas BL 3">Matematicas BL 3</mat-option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Registrar</button>
+
+            <button id="btn-ir-a-tabla">Ir a la tabla</button>
+          </form>
+        </div>
+        <div class="card-footer">
+          Todos los dercehos resevados &copy; desarollador de Asociacion Nuevo
+          Amanecer
+        </div>
+      </div>
+    </div>
+    <div id="pantalla-tabla" style="display: none">
+      <div class="card">
+        <div class="card-header">
+          <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
+            class="imagen-encabezado" />
+          <h3>
+            Inventariado de las Computadora de Asociacion Nuevo Amanecer
+          </h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Identificación</th>
+                <th scope="col">ID Inventario</th>
+                <th scope="col">Serie</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Usuario Admin</th>
+                <th scope="col">Fecha de entrega</th>
+                <th scope="col">Tipo de IP</th>
+                <th scope="col">IP</th>
+                <th scope="col">Área</th>
+                <th scope="col">Grado</th>
+                <th scope="col">Aula</th>
+                <th scope="col">Entregado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-registros">
+              <!-- Aquí se agregarán las filas de la tabla dinámicamente -->
+            </tbody>
+          </table>
+          <button id="btn-regresar-a-registro">Regresar al registro</button>
+  
+        </div>
+        <div class="card-footer">
+          Todos los dercehos resevados &copy; desarollador de Asociacion Nuevo
+          Amanecer
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>
