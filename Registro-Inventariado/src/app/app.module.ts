@@ -7,6 +7,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -30,6 +31,7 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatDatepickerModule,
     FormsModule,
     RouterModule,
     BrowserAnimationsModule,
