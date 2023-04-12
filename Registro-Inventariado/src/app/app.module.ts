@@ -5,12 +5,15 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './registro/registro.component';
 import { TablaComponent } from './tabla/tabla.component';
@@ -37,6 +40,7 @@ const firebaseConfig = {
     BrowserModule,
     AppRoutingModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule,
     RouterModule,
     BrowserAnimationsModule,

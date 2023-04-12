@@ -1,92 +1,123 @@
 <div class="card mt-5">
   <div class="card-header">
-    <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
-      class="imagen-encabezado" />
+    <img
+      src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png"
+      alt="Inventariado"
+      class="imagen-encabezado"
+    />
     <h3>
-      Registro de Inventariado de las Computadora de Asociacion Nuevo
-      Amanecer
+      Registro de Inventariado de las Computadora de Asociacion NuevoAmanecer
     </h3>
   </div>
+
   <div class="card-body">
     <form (submit)="onSubmit()">
+      <!-- ID Inventario y Identificación-->
       <div class="row">
-        <!-- Identificación -->
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Identificación</mat-label>
-            <mat-select [(value)]="registro.identificacion">
+            <mat-select
+              [(value)]="registro.identificacion"
+              name="identificacion"
+            >
               <mat-option value="ANAAIO">ANAAIO</mat-option>
               <mat-option value="ANALAP">ANALAP</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <!-- ID Inventario -->
+
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>ID Inventario</mat-label>
-            <input matInput [(ngModel)]="registro.idInventario">
+            <input
+              matInput
+              [(ngModel)]="registro.idInventario"
+              name="idInventario"
+            />
           </mat-form-field>
         </div>
       </div>
+
       <!-- Serie y Modelo -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Serie</mat-label>
-            <input matInput [(ngModel)]="registro.serie">
+            <input matInput [(ngModel)]="registro.serie" name="serie" />
           </mat-form-field>
         </div>
+
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Modelo</mat-label>
-            <input matInput [(ngModel)]="registro.modelo">
+            <input matInput [(ngModel)]="registro.modelo" name="modelo" />
           </mat-form-field>
         </div>
       </div>
+
       <!-- Siglas y Usuario -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Siglas</mat-label>
-            <input matInput [(ngModel)]="registro.siglas">
+            <input matInput [(ngModel)]="registro.siglas" name="siglas" />
           </mat-form-field>
         </div>
+
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Usuario</mat-label>
-            <input matInput [(ngModel)]="registro.usuario">
+            <input matInput [(ngModel)]="registro.usuario" name="usuario" />
           </mat-form-field>
         </div>
       </div>
+
       <!-- Usuario admin que entregó y Fecha de entrega -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Usuario admin que entregó</mat-label>
-            <input matInput [(ngModel)]="registro.usuarioAdmin">
+            <input
+              matInput
+              [(ngModel)]="registro.usuarioAdmin"
+              name="usuarioAdmin"
+            />
           </mat-form-field>
         </div>
+
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Fecha de entrega</mat-label>
-            <input matInput [(ngModel)]="registro.fechaEntrega" [matDatepicker]="picker" placeholder="Elija una fecha">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <input
+              matInput
+              [(ngModel)]="registro.fechaEntrega"
+              name="fechaEntrega"
+              [matDatepicker]="picker"
+              placeholder="Elija una fecha"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
       </div>
-      <!-- Entregado -->
+
+      <!-- Checkbox Entregado -->
       <div class="row">
         <div class="col">
-          <mat-checkbox [(ngModel)]="registro.entregado">Entregado</mat-checkbox>
+          <mat-checkbox [(ngModel)]="registro.entregado" name="entregado">Entregado</mat-checkbox>
         </div>
       </div>
+
       <!-- IP Estatus y Dirección IP -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>IP Estatus</mat-label>
-            <mat-select [(value)]="registro.ipEstatus">
+            <mat-select [(value)]="registro.ipEstatus" name="ipEstatus">
               <mat-option value="DHCP">DHCP</mat-option>
               <mat-option value="Estática">Estática</mat-option>
             </mat-select>
@@ -95,16 +126,21 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Dirección IP</mat-label>
-            <input matInput [(ngModel)]="registro.direccionIp">
+            <input
+              matInput
+              [(ngModel)]="registro.direccionIp"
+              name="direccionIp"
+            />
           </mat-form-field>
         </div>
       </div>
+
       <!-- Área, Cargo y Aula -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Área</mat-label>
-            <mat-select [(value)]="registro.area">
+            <mat-select [(value)]="registro.area" name="area">
               <!-- Aquí van las opciones para el área -->
               <mat-option value=""></mat-option>
               <mat-option value="Area Bilingue">Área Bilingue</mat-option>
@@ -120,8 +156,7 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Cargo</mat-label>
-            <mat-select [(value)]="registro.cargo">
-
+            <mat-select [(value)]="registro.cargo" name="cargo">
               <mat-option value=""></mat-option>
               <!-- ADMIN -->
               <mat-option value="Administracion direccion">
@@ -132,7 +167,9 @@
               </mat-option>
               <mat-option value="Administracion">Administracion</mat-option>
               <!-- CFP -->
-              <mat-option value="Equipo Instructor">Equipo Instructor</mat-option>
+              <mat-option value="Equipo Instructor"
+                >Equipo Instructor</mat-option
+              >
               <!--COL-->
               <mat-option value="I Bachillerato">I Bachillerato</mat-option>
               <mat-option value="II Bachillerato">II Bachillerato</mat-option>
@@ -141,7 +178,9 @@
               </mat-option>
               <mat-option value="Español">Español</mat-option>
               <mat-option value="Matematicas">Matematicas</mat-option>
-              <mat-option value="estudios sociales">estudios sociales</mat-option>
+              <mat-option value="estudios sociales"
+                >estudios sociales</mat-option
+              >
               <mat-option value="Ingles basico">Ingles basico</mat-option>
               <!--LABS-->
               <mat-option value="Laboratorio CFP">Laboratorio CFP</mat-option>
@@ -176,7 +215,7 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Aula</mat-label>
-            <mat-select [(value)]="registro.aula">
+            <mat-select [(value)]="registro.aula" name="aula">
               <!-- kinder, prepa  -->
               <mat-option value="Aula1k">AulaK</mat-option>
               <mat-option value="Aula2k">AulaP1</mat-option>
@@ -203,21 +242,37 @@
               <mat-option value="Aula20e">AulaB</mat-option>
               <mat-option value="Aula21e">AulaSM</mat-option>
               <mat-option value="Aula22e">AulaME</mat-option>
-
             </mat-select>
           </mat-form-field>
         </div>
       </div>
+      <!-- Observaciones -->
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Observaciones</mat-label>
+            <textarea
+              matInput
+              [(ngModel)]="registro.observaciones"
+              name="observaciones"
+              rows="4"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
       <!-- Botón de envío -->
       <div class="row">
         <div class="col">
-          <button mat-raised-button color="primary" type="submit">Enviar</button>
+          <button mat-raised-button color="primary" (click)="onSubmit()">
+            Enviar
+          </button>
         </div>
       </div>
     </form>
   </div>
+
   <div class="card-footer">
-    Todos los dercehos resevados &copy; desarollador de Asociacion Nuevo
-    Amanecer
+    Todos los dercehos resevados &copy; desarollador de Asociacion NuevoAmanecer
   </div>
 </div>

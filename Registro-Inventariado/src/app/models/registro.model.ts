@@ -1,4 +1,5 @@
 export interface Registro {
+
     identificacion: string;
     idInventario: string;
     modelo: string;

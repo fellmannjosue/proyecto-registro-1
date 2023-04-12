@@ -3,18 +3,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Registro } from '../models/registro.model';
 import { RegistroService } from '../services/registros.service';
 import * as XLSX from 'xlsx';
-import *as pdfMakeLib from 'pdfmake/build/pdfmake';
+import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
-const pdfMake = pdfMakeLib;
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-import { TDocumentDefinitions, StyleDictionary, Style } from 'pdfmake/interfaces';
+import { TDocumentDefinitions } from 'pdfmake/interfaces';
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
-interface CustomStyleDictionary extends StyleDictionary {
-  header: Style;
-}
 
 @Component({
   selector: 'app-tabla',
@@ -55,18 +50,18 @@ export class TablaComponent implements OnInit {
         {
           table: {
             headerRows: 1,
-            widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+            widths: ['10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%'],
             body: [columnHeaders, ...tableData],
           },
         },
       ],
       styles: {
         header: {
-          fontSize: 14,
+          fontSize: 10,
           bold: true,
           margin: [0, 0, 0, 0],
         },
-      } as CustomStyleDictionary,
+      },
     };
 
     pdfMake.createPdf(docDefinition).download('registros.pdf');

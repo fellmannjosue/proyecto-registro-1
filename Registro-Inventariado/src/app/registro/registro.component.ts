@@ -16,6 +16,7 @@ interface Registro {
   area: string;
   cargo: string;
   aula: string;
+  observaciones: string;
 }
 
 @Component({
@@ -39,6 +40,7 @@ export class RegistroComponent {
     area: '',
     cargo: '',
     aula: '',
+    observaciones: '',
   };
 
   constructor(private db: AngularFireDatabase) { }
