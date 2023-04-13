@@ -30,7 +30,7 @@ export class TablaComponent implements OnInit {
     });
   }
 
-  editarRegistro(registro: Registro) { this.router.navigate(['/editar-registro', registro.id]);
+  editarRegistro(registro: Registro) { 
   }
 
   eliminarRegistro(registro: Registro) {

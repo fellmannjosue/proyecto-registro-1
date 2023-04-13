@@ -28,7 +28,6 @@
             </mat-select>
           </mat-form-field>
         </div>
-
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>ID Inventario</mat-label>
@@ -49,7 +48,6 @@
             <input matInput [(ngModel)]="registro.serie" name="serie" />
           </mat-form-field>
         </div>
-
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Modelo</mat-label>
@@ -66,7 +64,6 @@
             <input matInput [(ngModel)]="registro.siglas" name="siglas" />
           </mat-form-field>
         </div>
-
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Usuario</mat-label>
@@ -87,7 +84,6 @@
             />
           </mat-form-field>
         </div>
-
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Fecha de entrega</mat-label>
@@ -107,13 +103,6 @@
         </div>
       </div>
 
-      <!-- Checkbox Entregado -->
-      <div class="row">
-        <div class="col">
-          <mat-checkbox [(ngModel)]="registro.entregado" name="entregado">Entregado</mat-checkbox>
-        </div>
-      </div>
-
       <!-- IP Estatus y Dirección IP -->
       <div class="row">
         <div class="col">
@@ -125,7 +114,6 @@
             </mat-select>
           </mat-form-field>
         </div>
-
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Dirección IP</mat-label>
@@ -137,9 +125,12 @@
         </div>
       </div>
 
-      <!-- Área, Cargo y Aula -->
+<!-- Checkbox Entregado -->
       <div class="row">
         <div class="col">
+          <mat-checkbox [(ngModel)]="registro.entregado" name="entregado">Entregado</mat-checkbox>
+        </div>
+         <div class="col ">
           <mat-form-field appearance="outline">
             <mat-label>Área</mat-label>
             <mat-select [(value)]="registro.area" name="area">
@@ -155,7 +146,10 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col">
+      </div>
+      <!-- Área, Cargo y Aula -->
+      <div class="row">
+        <div class="col ">
           <mat-form-field appearance="outline">
             <mat-label>Cargo</mat-label>
             <mat-select [(value)]="registro.cargo" name="cargo">
@@ -214,7 +208,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col">
+        <div class="col ">
           <mat-form-field appearance="outline">
             <mat-label>Aula</mat-label>
             <mat-select [(value)]="registro.aula" name="aula">
@@ -256,11 +250,11 @@
             <textarea
               matInput
               [(ngModel)]="registro.observaciones"
-              name="observaciones"
-              rows="4"
+              name="observaciones" rows="5"
             ></textarea>
           </mat-form-field>
         </div>
+        
       </div>
 
       <!-- Botón de envío -->
@@ -269,10 +263,13 @@
           <button mat-raised-button color="primary" (click)="onSubmit()">
             Enviar
           </button>
-          <!-- boyon ir a tabla-->
-          <button mat-raised-button color="primary" routerLink="/tabla">
-            Ir a Tabla
-          </button>
+          <!-- boton ir a tabla-->
+          <div
+        class="col">
+        <button mat-raised-button color="primary" routerLink="/tabla">
+          Ir a Tabla
+        </button>
+      </div>
 
         </div>
       </div>

@@ -1,17 +1,19 @@
 <div class="card mt-5">
   <div class="card-header">
-          <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
-            class="imagen-encabezado" />
-          <h3>
-            Inventariado de las Computadora de Asociacion Nuevo Amanecer
-          </h3>
-        </div>
+    <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado" class="imagen-encabezado" />
+    <h3>
+      Inventariado de las Computadora de Asociacion Nuevo Amanecer
+    </h3>
+  </div>
   <div class="card-body">
     <div class="d-flex justify-content-between">
       <h2>Registros</h2>
       <div>
         <button mat-raised-button color="primary" (click)="exportarExcel()">Exportar Excel</button>
         <button mat-raised-button color="primary" (click)="exportarPDF()">Exportar PDF</button>
+        <button mat-raised-button color="primary" routerLink="/registro">
+          regresar
+        </button>
       </div>
     </div>
     <table class="table table-striped mt-3">
@@ -41,8 +43,10 @@
           <td>{{ registro.adminEntrega }}</td>
           <td>{{ registro.fechaEntrega | date }}</td>
           <td>{{ registro.entregado ? '✔️' : '❌' }}</td>
-          <button mat-raised-button color="accent" (click)="editarRegistro(registro)">Editar</button>
-          <button mat-raised-button color="warn" (click)="eliminarRegistro(registro)">Eliminar</button>
+          <td>
+            <button mat-raised-button color="accent" (click)="editarRegistro(registro)">Editar</button>
+            <button mat-raised-button color="warn" (click)="eliminarRegistro(registro)">Eliminar</button>
+          </td>
         </tr>
       </tbody>
     </table>
