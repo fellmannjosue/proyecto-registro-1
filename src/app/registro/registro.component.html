@@ -1,11 +1,8 @@
 <div class="card mt-5">
 
   <div class="card-header">
-    <img
-      src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png"
-      alt="Inventariado"
-      class="imagen-encabezado"
-    />
+    <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
+      class="imagen-encabezado" />
     <h3>
       Registro de Inventariado de las Computadora de Asociacion NuevoAmanecer
     </h3>
@@ -13,16 +10,13 @@
 
   <div class="card-body">
     <form (submit)="onSubmit($event)">
-      
+
       <!-- ID Inventario y Identificación-->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Identificación</mat-label>
-            <mat-select
-              [(value)]="registro.identificacion"
-              name="identificacion"
-            >
+            <mat-select [(value)]="registro.identificacion" name="identificacion">
               <mat-option value="ANAAIO">ANAAIO</mat-option>
               <mat-option value="ANALAP">ANALAP</mat-option>
             </mat-select>
@@ -31,11 +25,7 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>ID Inventario</mat-label>
-            <input
-              matInput
-              [(ngModel)]="registro.idInventario"
-              name="idInventario"
-            />
+            <input matInput [(ngModel)]="registro.idInventario" name="idInventario" />
           </mat-form-field>
         </div>
       </div>
@@ -77,27 +67,15 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Usuario admin que entregó</mat-label>
-            <input
-              matInput
-              [(ngModel)]="registro.usuarioAdmin"
-              name="usuarioAdmin"
-            />
+            <input matInput [(ngModel)]="registro.usuarioAdmin" name="usuarioAdmin" />
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Fecha de entrega</mat-label>
-            <input
-              matInput
-              [(ngModel)]="registro.fechaEntrega"
-              name="fechaEntrega"
-              [matDatepicker]="picker"
-              placeholder="Elija una fecha"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
+            <input matInput [(ngModel)]="registro.fechaEntrega" name="fechaEntrega" [matDatepicker]="picker"
+              placeholder="Elija una fecha" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
@@ -117,25 +95,21 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Dirección IP</mat-label>
-            <input
-              matInput
-              [(ngModel)]="registro.direccionIp"
-              name="direccionIp"/>
+            <input matInput [(ngModel)]="registro.direccionIP" name="direccionIp" />
           </mat-form-field>
         </div>
       </div>
 
-<!-- Checkbox Entregado -->
+      <!-- Checkbox Entregado -->
       <div class="row">
         <div class="col">
           <mat-checkbox [(ngModel)]="registro.entregado" name="entregado">Entregado</mat-checkbox>
         </div>
-         <div class="col ">
+        <div class="col ">
           <mat-form-field appearance="outline">
             <mat-label>Área</mat-label>
             <mat-select [(value)]="registro.area" name="area">
-              <!-- Aquí van las opciones para el área -->
-              <mat-option value=""></mat-option>
+
               <mat-option value="Area Bilingue">Área Bilingue</mat-option>
               <mat-option value="Área Colegio">Área Colegio</mat-option>
               <mat-option value="Área Administracion">
@@ -153,7 +127,6 @@
           <mat-form-field appearance="outline">
             <mat-label>Cargo</mat-label>
             <mat-select [(value)]="registro.cargo" name="cargo">
-              <mat-option value=""></mat-option>
               <!-- ADMIN -->
               <mat-option value="Administracion direccion">
                 Administracion direccion
@@ -163,9 +136,7 @@
               </mat-option>
               <mat-option value="Administracion">Administracion</mat-option>
               <!-- CFP -->
-              <mat-option value="Equipo Instructor"
-                >Equipo Instructor</mat-option
-              >
+              <mat-option value="Equipo Instructor">Equipo Instructor</mat-option>
               <!--COL-->
               <mat-option value="I Bachillerato">I Bachillerato</mat-option>
               <mat-option value="II Bachillerato">II Bachillerato</mat-option>
@@ -174,9 +145,7 @@
               </mat-option>
               <mat-option value="Español">Español</mat-option>
               <mat-option value="Matematicas">Matematicas</mat-option>
-              <mat-option value="estudios sociales"
-                >estudios sociales</mat-option
-              >
+              <mat-option value="estudios sociales">estudios sociales</mat-option>
               <mat-option value="Ingles basico">Ingles basico</mat-option>
               <!--LABS-->
               <mat-option value="Laboratorio CFP">Laboratorio CFP</mat-option>
@@ -212,6 +181,8 @@
           <mat-form-field appearance="outline">
             <mat-label>Aula</mat-label>
             <mat-select [(value)]="registro.aula" name="aula">
+              <!--administracion-->
+              <mat-option value="admin">edificioadmin</mat-option>
               <!-- kinder, prepa  -->
               <mat-option value="Aula1k">AulaK</mat-option>
               <mat-option value="Aula2k">AulaP1</mat-option>
@@ -243,35 +214,32 @@
         </div>
       </div>
       <!-- Observaciones -->
-      <div class="row 5">
-        <div class="col">
-          <mat-form-field appearance="outline">
-            <mat-label>Observaciones</mat-label>
-            <textarea
-              matInput
-              [(ngModel)]="registro.observaciones"
-              name="observaciones" rows="5"
-            ></textarea>
-          </mat-form-field>
-        </div>
-        
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Observaciones</mat-label>
+          <textarea matInput [(ngModel)]="registro.observaciones" name="observaciones" rows="5"></textarea>
+        </mat-form-field>
       </div>
+
+
 
       <!-- Botón de envío -->
-      <div class="row">
-        <div class="col">
-          <button mat-raised-button color="primary" type="submit">Enviar</button>
 
-          <!-- boton ir a tabla-->
-          <div
-        class="col">
-        <button mat-raised-button color="primary" routerLink="/tabla">
-          Ir a Tabla
-        </button>
-         </div>
+      <div class="row">
+        <button mat-raised-button color="primary" type="submit">Enviar</button>
+        <br>
+        <br>
+        <br>
+        <!-- boton ir a tabla-->
+        <div class="row">
+          <button mat-raised-button color="sucess" routerLink="/tabla">
+            Ir a Tabla
+          </button>
         </div>
       </div>
-      
+
+
     </form>
   </div>
 

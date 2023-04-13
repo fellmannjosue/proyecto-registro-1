@@ -7,7 +7,7 @@ export interface Registro {
     siglas: string;
     usuario: string;
     adminEntrega: string;
-    fechaEntrega: string;
+    fechaEntrega: Date;
     entregado: boolean;
     tipoIP: string;
     direccionIP: string;

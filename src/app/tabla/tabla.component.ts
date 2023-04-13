@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import * as moment from 'moment';
+
 
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 
@@ -26,9 +28,15 @@ export class TablaComponent implements OnInit {
 
   ngOnInit(): void {
     this.registroService.getRegistros().subscribe((registros) => {
-      this.dataSource.data = registros;
+      const registrosConFechas = registros.map((registro) => {
+        return { ...registro, fechaEntrega: moment(registro.fechaEntrega).toDate() };
+      });
+      this.dataSource.data = registrosConFechas;
+      console.log(this.dataSource.data); // Añadir esta línea para verificar los registros y las fechas
     });
   }
+  
+  
 
   exportarPDF(): void {
     const columnHeaders = this.displayedColumns.map((column) => column.toUpperCase());
@@ -41,19 +49,22 @@ export class TablaComponent implements OnInit {
         {
           table: {
             headerRows: 1,
-            widths: ['15%', '15%', '10%', '10%', '10%', '10%', '10%', '15%', '15%', '15%'],
+            widths: ['10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%'],
             body: [columnHeaders, ...tableData],
           },
         },
       ],
       styles: {
         header: {
-          fontSize: 4,
+          fontSize: 14, // Cambiar aquí
           bold: true,
           margin: [0, 0, 0, 0],
         },
       },
     };
+    
+    pdfMake.createPdf(docDefinition).download('registros.pdf');
+    
     
     pdfMake.createPdf(docDefinition).download('registros.pdf');
     

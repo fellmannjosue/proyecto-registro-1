@@ -23,9 +23,8 @@
           <th>ID Inventario</th>
           <th>Modelo</th>
           <th>Serie</th>
-          <th>Dirección IP</th>
+          <th>IP</th>
           <th>Usuario</th>
-          <th>Admin que entregó</th>
           <th>Fecha</th>
           <th>Entregado</th>
         </tr>
@@ -39,7 +38,6 @@
           <td>{{ registro.serie }}</td>
           <td>{{ registro.direccionIP }}</td>
           <td>{{ registro.usuario }}</td>
-          <td>{{ registro.adminEntrega }}</td>
           <td>{{ registro.fechaEntrega | date }}</td>
           <td>{{ registro.entregado ? '✔️' : '❌' }}</td>
           <td>

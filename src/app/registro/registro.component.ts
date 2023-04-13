@@ -12,7 +12,7 @@ interface Registro {
   fechaEntrega: Date;
   entregado: boolean;
   ipEstatus: string;
-  direccionIp: string;
+  direccionIP: string;
   area: string;
   cargo: string;
   aula: string;
@@ -36,7 +36,7 @@ export class RegistroComponent {
     fechaEntrega: new Date(),
     entregado: false,
     ipEstatus: '',
-    direccionIp: '',
+    direccionIP: '',
     area: '',
     cargo: '',
     aula: '',
