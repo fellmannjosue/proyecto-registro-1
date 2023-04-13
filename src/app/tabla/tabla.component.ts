@@ -30,11 +30,35 @@ export class TablaComponent implements OnInit {
     });
   }
 
-  editarRegistro(registro: Registro) { 
-  }
+  exportarPDF(): void {
+    const columnHeaders = this.displayedColumns.map((column) => column.toUpperCase());
+    const tableData = this.dataSource.data.map((registro) => Object.values(registro));
 
-  eliminarRegistro(registro: Registro) {
-    // Implementa la lógica de eliminación aquí
+    const docDefinition: TDocumentDefinitions = {
+      pageOrientation: 'landscape',
+      content: [
+        { text: 'Reporte de Registros', style: 'header' },
+        {
+          table: {
+            headerRows: 1,
+            widths: ['15%', '15%', '10%', '10%', '10%', '10%', '10%', '15%', '15%', '15%'],
+            body: [columnHeaders, ...tableData],
+          },
+        },
+      ],
+      styles: {
+        header: {
+          fontSize: 4,
+          bold: true,
+          margin: [0, 0, 0, 0],
+        },
+      },
+    };
+    
+    pdfMake.createPdf(docDefinition).download('registros.pdf');
+    
+
+    pdfMake.createPdf(docDefinition).download('registros.pdf');
   }
   exportarExcel(): void {
     const registrosArray = this.dataSource.data.map((registro) => {
@@ -47,30 +71,4 @@ export class TablaComponent implements OnInit {
     XLSX.writeFile(wb, 'registros.xlsx');
   }
 
-  exportarPDF(): void {
-    const columnHeaders = this.displayedColumns.map((column) => column.toUpperCase());
-    const tableData = this.dataSource.data.map((registro) => Object.values(registro));
-
-    const docDefinition: TDocumentDefinitions = {
-      content: [
-        { text: 'Reporte de Registros', style: 'header' },
-        {
-          table: {
-            headerRows: 1,
-            widths: ['10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%'],
-            body: [columnHeaders, ...tableData],
-          },
-        },
-      ],
-      styles: {
-        header: {
-          fontSize: 10,
-          bold: true,
-          margin: [0, 0, 0, 0],
-        },
-      },
-    };
-
-    pdfMake.createPdf(docDefinition).download('registros.pdf');
-  }
 }

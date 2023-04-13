@@ -28,7 +28,6 @@
           <th>Admin que entregó</th>
           <th>Fecha</th>
           <th>Entregado</th>
-          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -44,8 +43,7 @@
           <td>{{ registro.fechaEntrega | date }}</td>
           <td>{{ registro.entregado ? '✔️' : '❌' }}</td>
           <td>
-            <button mat-raised-button color="accent" (click)="editarRegistro(registro)">Editar</button>
-            <button mat-raised-button color="warn" (click)="eliminarRegistro(registro)">Eliminar</button>
+           
           </td>
         </tr>
       </tbody>
