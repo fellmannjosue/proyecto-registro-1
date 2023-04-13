@@ -12,7 +12,7 @@
   </div>
 
   <div class="card-body">
-    <form (submit)="onSubmit()">
+    <form (submit)="onSubmit($event)">
       
       <!-- ID Inventario y Identificación-->
       <div class="row">
@@ -243,7 +243,7 @@
         </div>
       </div>
       <!-- Observaciones -->
-      <div class="row">
+      <div class="row 5">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Observaciones</mat-label>
@@ -260,17 +260,15 @@
       <!-- Botón de envío -->
       <div class="row">
         <div class="col">
-          <button mat-raised-button color="primary" (click)="onSubmit()">
-            Enviar
-          </button>
+          <button mat-raised-button color="primary" type="submit">Enviar</button>
+
           <!-- boton ir a tabla-->
           <div
         class="col">
         <button mat-raised-button color="primary" routerLink="/tabla">
           Ir a Tabla
         </button>
-      </div>
-
+         </div>
         </div>
       </div>
       
