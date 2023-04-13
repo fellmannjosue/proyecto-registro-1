@@ -1,26 +1,45 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Registro } from '../models/registro.model';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroService {
-  constructor(private db: AngularFireDatabase) {}
+  private registrosRef: AngularFireList<Registro>;
 
-  addRegistro(registro: Registro) {
-    return this.db.list('/registros').push(registro);
+  constructor(private db: AngularFireDatabase) {
+    this.registrosRef = this.db.list('/registros');
   }
 
-  getRegistros() {
-    return this.db
-      .list('/registros')
+  addRegistro(registro: Registro) {
+    return this.registrosRef.push(registro);
+  }
+
+  getRegistros(): Observable<Registro[]> {
+    return this.registrosRef
       .snapshotChanges()
       .pipe(
         map((changes: any[]) =>
           changes.map((c: any) => ({ key: c.payload.key, ...c.payload.val() }))
         )
       );
+  }
+
+  getRegistroById(id: string): Observable<Registro | null> {
+    return this.db
+      .object<Registro>(`/registros/${id}`)
+      .snapshotChanges()
+      .pipe(
+        map((action: any) =>
+          action.payload.exists() ? { key: action.payload.key, ...action.payload.val() } : null
+        )
+      );
+  }
+
+  updateRegistro(id: string, registro: Registro): Promise<void> {
+    return this.registrosRef.update(id, registro);
   }
 }

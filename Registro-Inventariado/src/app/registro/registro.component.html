@@ -13,6 +13,7 @@
 
   <div class="card-body">
     <form (submit)="onSubmit()">
+      
       <!-- ID Inventario y Identificación-->
       <div class="row">
         <div class="col">
@@ -268,8 +269,14 @@
           <button mat-raised-button color="primary" (click)="onSubmit()">
             Enviar
           </button>
+          <!-- boyon ir a tabla-->
+          <button mat-raised-button color="primary" routerLink="/tabla">
+            Ir a Tabla
+          </button>
+
         </div>
       </div>
+      
     </form>
   </div>
 

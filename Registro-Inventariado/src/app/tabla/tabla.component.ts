@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Registro } from '../models/registro.model';
 import { RegistroService } from '../services/registros.service';
+import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -21,7 +22,7 @@ export class TablaComponent implements OnInit {
   displayedColumns: string[] = ['identificacion', 'idInventario', 'modelo', 'serie', 'direccionIp', 'usuario', 'adminEntrego', 'fechaEntrega'];
   dataSource = new MatTableDataSource<Registro>();
 
-  constructor(private registroService: RegistroService) { }
+  constructor(private registroService: RegistroService, private router: Router) { }
 
   ngOnInit(): void {
     this.registroService.getRegistros().subscribe((registros) => {
@@ -29,6 +30,12 @@ export class TablaComponent implements OnInit {
     });
   }
 
+  editarRegistro(registro: Registro) { this.router.navigate(['/editar-registro', registro.id]);
+  }
+
+  eliminarRegistro(registro: Registro) {
+    // Implementa la lógica de eliminación aquí
+  }
   exportarExcel(): void {
     const registrosArray = this.dataSource.data.map((registro) => {
       return Object.values(registro);
