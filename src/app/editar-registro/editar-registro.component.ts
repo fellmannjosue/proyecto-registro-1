@@ -7,7 +7,7 @@ import { Registro } from '../models/registro.model';
 @Component({
   selector: 'app-editar-registro',
   templateUrl: './editar-registro.component.html',
-  styleUrls: ['./editar-registro.component.scss']
+  styleUrls: ['./editar-registro.component.css']
 })
 export class EditarRegistroComponent implements OnInit {
   registroForm: FormGroup;
