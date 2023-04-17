@@ -28,7 +28,7 @@ export class RegistroService {
       );
   }
 
-  getRegistroById(id: string): Observable<Registro | null> {
+  getRegistroById(id: string): Observable<Registro > {
     return this.db
       .object<Registro>(`/registros/${id}`)
       .snapshotChanges()
