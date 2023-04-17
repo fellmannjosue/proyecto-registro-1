@@ -87,14 +87,14 @@ export class TablaComponent implements OnInit {
         {
           table: {
             headerRows: 1,
-            widths: ['10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%', '10%','10%'],
+            widths: ['10%', '10%', '10%', '8%', '10%', '10%', '10%', '10%', '8%', '8%','10%'],
             body: [columnHeaders, ...tableData],
           },
         },
       ],
       styles: {
         header: {
-          fontSize: 14, // Cambiar aquí
+          fontSize: 20, // Cambiar aquí
           bold: true,
           margin: [0, 0, 0, 0],
         },

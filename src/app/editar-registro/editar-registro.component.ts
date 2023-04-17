@@ -54,16 +54,19 @@ export class EditarRegistroComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.registroId = params['id'];
-
-      this.registroService.getRegistroById(this.registroId).subscribe(registro => {
-        this.registro = registro;
-        if (this.registro) {
+      
+      if (this.registroId) {
+        this.registroService.getRegistroById(this.registroId).subscribe(registro => {
+          this.registro = registro;
           this.registroForm.patchValue(this.registro as { [key: string]: any });
-        }
-      });
+        });
+      } else {
+        // Redirigir al usuario a la página de registros si el registroId es inválido
+        this.router.navigate(['/registro']); // Asegúrate de reemplazar '/registros' con la ruta donde se muestran los registros en tu aplicación
+      }
     });
   }
-
+  
   onSubmit(event: Event): void {
     event.preventDefault();
     const updatedRegistro = this.registroForm.value;
