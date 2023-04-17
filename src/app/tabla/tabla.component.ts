@@ -46,7 +46,7 @@ export class TablaComponent implements OnInit {
     // Muestra un cuadro de diálogo de confirmación antes de eliminar el registro
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
-      data: { mensaje: '¿Estás seguro de que deseas eliminar este registro?' },
+      data: { mensaje: '¿Estás seguro de que deseas eliminar los registros?' },
     });
   
     dialogRef.afterClosed().subscribe((result) => {
