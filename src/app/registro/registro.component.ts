@@ -32,7 +32,6 @@ export class RegistroComponent {
 
   onSubmit(event: Event) {
     event.stopPropagation();
-    console.log('onSubmit() llamado');
     this.db.list('registros').push(this.registro).then(() => {
       console.log('Registro guardado en Firebase');
     }).catch((error) => {
