@@ -27,6 +27,7 @@
           <th>Usuario</th>
           <th>Fecha</th>
           <th>Entregado</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -41,7 +42,12 @@
           <td>{{ registro.fechaEntrega | date }}</td>
           <td>{{ registro.entregado ? '✔️' : '❌' }}</td>
           <td>
-           
+            <button mat-icon-button color="accent" (click)="editarRegistro(registro)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="eliminarRegistro(registro)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
         </tr>
       </tbody>

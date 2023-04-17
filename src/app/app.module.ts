@@ -19,7 +19,10 @@ import { RegistroComponent } from './registro/registro.component';
 import { TablaComponent } from './tabla/tabla.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../app/environments/environment';
-
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { EditarRegistroComponent } from './editar-registro/editar-registro.component';
 // Firebase configuration object
 
 
@@ -28,6 +31,8 @@ import { environment } from '../app/environments/environment';
     AppComponent,
     RegistroComponent,
     TablaComponent,
+    ConfirmDialogComponent,
+    EditarRegistroComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,8 @@ import { environment } from '../app/environments/environment';
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],

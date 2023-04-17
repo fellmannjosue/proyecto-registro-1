@@ -42,4 +42,9 @@ export class RegistroService {
   updateRegistro(id: string, registro: Registro): Promise<void> {
     return this.registrosRef.update(id, registro);
   }
+
+  // Añadir la función eliminarRegistro aquí
+  eliminarRegistro(id: string): Promise<void> {
+    return this.registrosRef.remove(id);
+  }
 }

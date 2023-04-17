@@ -1,23 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Registro } from '../models/registro.model';
 
-interface Registro {
-  identificacion: string;
-  idInventario: string;
-  serie: string;
-  modelo: string;
-  siglas: string;
-  usuario: string;
-  usuarioAdmin: string;
-  fechaEntrega: Date;
-  entregado: boolean;
-  ipEstatus: string;
-  direccionIP: string;
-  area: string;
-  cargo: string;
-  aula: string;
-  observaciones: string;
-}
 
 @Component({
   selector: 'app-registro',
@@ -26,6 +10,7 @@ interface Registro {
 })
 export class RegistroComponent {
   registro: Registro = {
+    id:'',
     identificacion: '',
     idInventario: '',
     serie: '',
