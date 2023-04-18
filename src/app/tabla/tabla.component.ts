@@ -40,7 +40,7 @@ export class TablaComponent implements OnInit {
   editarRegistro(registro: Registro): void {
     console.log('Editar registro:', registro);
     console.log('ID del registro:', registro.id); // Agregar esta línea
-    this.router.navigate(['/editar-registro', registro.id]);
+    this.router.navigate(['/editar', registro.id]);
   }
   
   
