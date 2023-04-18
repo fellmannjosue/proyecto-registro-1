@@ -87,7 +87,7 @@ export class TablaComponent implements OnInit {
         {
           table: {
             headerRows: 1,
-            widths: ['10%', '10%', '10%', '8%', '10%', '10%', '10%', '10%', '8%', '8%','10%'],
+            widths: ['10%', '10%', '10%', '8%', '10%', '10%', '10%', '10%', '8%', '8%','10%','10%'],
             body: [columnHeaders, ...tableData],
           },
         },
