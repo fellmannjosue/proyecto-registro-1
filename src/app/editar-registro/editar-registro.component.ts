@@ -58,14 +58,15 @@ export class EditarRegistroComponent implements OnInit {
       if (this.registroId) {
         this.registroService.getRegistroById(this.registroId).subscribe(registro => {
           this.registro = registro;
-          this.registroForm.patchValue(this.registro as { [key: string]: any });
+          this.registroForm.patchValue({ ...this.registro, key: this.registroId });
         });
       } else {
         // Redirigir al usuario a la página de registros si el registroId es inválido
-        this.router.navigate(['/registro']); // Asegúrate de reemplazar '/registros' con la ruta donde se muestran los registros en tu aplicación
+        this.router.navigate(['/registro']);
       }
     });
   }
+  
   
   onSubmit(event: Event): void {
     event.preventDefault();
