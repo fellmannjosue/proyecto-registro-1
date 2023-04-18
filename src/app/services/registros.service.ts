@@ -25,11 +25,13 @@ export class RegistroService {
       .snapshotChanges()
       .pipe(
         map((changes: any[]) =>
-          changes.map((c: any) => ({ id: c.payload.key, ...c.payload.val() }))
+          changes.map((c: any) => {
+            const registro = c.payload.val();
+            return { id: c.payload.key, ...registro };
+          })
         )
       );
   }
-  
 
   getRegistroById(id: string): Observable<Registro > {
     return this.db

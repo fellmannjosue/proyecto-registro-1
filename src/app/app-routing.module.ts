@@ -8,11 +8,7 @@ import { EditarRegistroComponent } from './editar-registro/editar-registro.compo
 const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'tabla', component: TablaComponent },
-  {
-    path: 'ruta-editar/:id',
-    component: EditarRegistroComponent,
-  },
-  
+  { path: 'editar-registro/:id',component: EditarRegistroComponent,},
   { path: '', redirectTo: '/registro', pathMatch: 'full' },
 
 ];

@@ -1,91 +1,91 @@
 <div class="card mt-5">
-    <div class="card-header">
-      <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
-        class="imagen-encabezado" />
-      <h3>
-        Editar Inventariado de las Computadora de Asociacion NuevoAmanecer
-      </h3>
-    </div>
-  
-    <div class="card-body">
-      <form (submit)="onSubmit($event)">
-  
-        <!-- ID Inventario y Identificación-->
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="outline">
-              <mat-label>Identificación</mat-label>
-              <mat-select [(value)]="registro.identificacion" name="identificacion">
-                <mat-option value="ANAAIO">ANAAIO</mat-option>
-                <mat-option value="ANALAP">ANALAP</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field appearance="outline">
-              <mat-label>ID Inventario</mat-label>
-              <input matInput [(ngModel)]="registro.idInventario" name="idInventario" />
-            </mat-form-field>
-          </div>
+  <div class="card-header">
+    <img src="https://uploadgerencie.com/imagenes/estructura-notas-estados-financieros.png" alt="Inventariado"
+      class="imagen-encabezado" />
+    <h3>
+      Editar Inventariado de las Computadora de Asociacion NuevoAmanecer
+    </h3>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="registroForm" (submit)="onSubmit($event)">
+
+      <!-- ID Inventario y Identificación-->
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Identificación</mat-label>
+            <mat-select formControlName="identificacion">
+              <mat-option value="ANAAIO">ANAAIO</mat-option>
+              <mat-option value="ANALAP">ANALAP</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-  
-        <!-- Serie y Modelo -->
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="outline">
-              <mat-label>Serie</mat-label>
-              <input matInput [(ngModel)]="registro.serie" name="serie" />
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field appearance="outline">
-              <mat-label>Modelo</mat-label>
-              <input matInput [(ngModel)]="registro.modelo" name="modelo" />
-            </mat-form-field>
-          </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>ID Inventario</mat-label>
+            <input matInput formControlName="idInventario" />
+          </mat-form-field>
         </div>
-  
-        <!-- Siglas y Usuario -->
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="outline">
-              <mat-label>Siglas</mat-label>
-              <input matInput [(ngModel)]="registro.siglas" name="siglas" />
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field appearance="outline">
-              <mat-label>Usuario</mat-label>
-              <input matInput [(ngModel)]="registro.usuario" name="usuario" />
-            </mat-form-field>
-          </div>
+      </div>
+
+      <!-- Serie y Modelo -->
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Serie</mat-label>
+            <input matInput formControlName="serie" />
+          </mat-form-field>
         </div>
-  
-        <!-- Usuario admin que entregó y Fecha de entrega -->
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="outline">
-              <mat-label>Usuario admin que entregó</mat-label>
-              <input matInput [(ngModel)]="registro.usuarioAdmin" name="usuarioAdmin" />
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field appearance="outline">
-              <mat-label>Fecha de entrega</mat-label>
-              <input matInput [(ngModel)]="registro.fechaEntrega" name="fechaEntrega" [matDatepicker]="picker"
-                placeholder="Elija una fecha" />
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <input matInput formControlName="modelo" />
+          </mat-form-field>
         </div>
-  
+      </div>
+
+      <!-- Siglas y Usuario -->
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Siglas</mat-label>
+            <input matInput formControlName="siglas" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input matInput formControlName="usuario" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Usuario admin que entregó y Fecha de entrega -->
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Usuario admin que entregó</mat-label>
+            <input matInput formControlName="usuarioAdmin" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de entrega</mat-label>
+            <input matInput formControlName="fechaEntrega" [matDatepicker]="picker"
+              placeholder="Elija una fecha" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
               <!-- IP Estatus y Dirección -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>IP Estatus</mat-label>
-            <mat-select [(value)]="registro.ipEstatus" name="ipEstatus">
+            <mat-select formControlName="ipEstatus">
               <mat-option value="DHCP">DHCP</mat-option>
               <mat-option value="Estática">Estática</mat-option>
             </mat-select>
@@ -94,7 +94,7 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Dirección</mat-label>
-            <input matInput [(ngModel)]="registro.direccionIP" name="direccionIp" />
+            <input matInput formControlName="direccionIP" />
           </mat-form-field>
         </div>
       </div>
@@ -104,7 +104,7 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Observaciones</mat-label>
-            <textarea matInput [(ngModel)]="registro.observaciones" name="observaciones"></textarea>
+            <textarea matInput formControlName="observaciones"></textarea>
           </mat-form-field>
         </div>
       </div>
@@ -120,3 +120,4 @@
     </form>
   </div>
 </div>
+

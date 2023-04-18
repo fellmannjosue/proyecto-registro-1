@@ -38,9 +38,11 @@ export class TablaComponent implements OnInit {
     });
   }
   editarRegistro(registro: Registro): void {
-    // Navega a la ruta de edición de registros (reemplaza 'ruta-editar' con la ruta correcta en tu aplicación)
-    this.router.navigate(['/ruta-editar', registro.id]);
+    console.log('Editar registro:', registro);
+    console.log('ID del registro:', registro.id); // Agregar esta línea
+    this.router.navigate(['/editar-registro', registro.id]);
   }
+  
   
   eliminarRegistro(registro: Registro): void {
     // Muestra un cuadro de diálogo de confirmación antes de eliminar el registro
@@ -61,10 +63,6 @@ export class TablaComponent implements OnInit {
       }
     });
   }
-  
-  
-  
-
   exportarPDF(): void {
     const columnHeaders = this.displayedColumns.map((column) => column.toUpperCase());
     const tableData = this.dataSource.data.map((registro) => [

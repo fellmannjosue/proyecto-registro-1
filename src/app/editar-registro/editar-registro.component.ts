@@ -46,7 +46,7 @@ export class EditarRegistroComponent implements OnInit {
       usuarioAdmin: new FormControl(''),
       fechaEntrega: new FormControl(''),
       ipEstatus: new FormControl(''),
-      direccion: new FormControl(''),
+      direccionIP: new FormControl(''),
       observaciones: new FormControl('')
     });
   }
@@ -58,11 +58,11 @@ export class EditarRegistroComponent implements OnInit {
       if (this.registroId) {
         this.registroService.getRegistroById(this.registroId).subscribe(registro => {
           this.registro = registro;
-          this.registroForm.patchValue({ ...this.registro, key: this.registroId });
+          this.registroForm.patchValue({ ...this.registro, id: this.registroId });
         });
       } else {
         // Redirigir al usuario a la página de registros si el registroId es inválido
-        this.router.navigate(['/registro']);
+        this.router.navigate(['/editar-registro']);
       }
     });
   }
@@ -70,12 +70,17 @@ export class EditarRegistroComponent implements OnInit {
   
   onSubmit(event: Event): void {
     event.preventDefault();
-    const updatedRegistro = this.registroForm.value;
-
+    const updatedRegistro = {
+      ...this.registroForm.value,
+      id: this.registroId
+    };
+    
+  
     this.registroService.updateRegistro(this.registroId, updatedRegistro).then(() => {
-      this.router.navigate(['/tabla']); // Reemplaza '/registros' con la ruta donde se muestran los registros
+      this.router.navigate(['/editar-registro']);
     });
   }
+  
 
   onCancel(): void {
     this.router.navigate(['/tabla']); // Reemplaza '/registros' con la ruta donde se muestran los registros

@@ -23,6 +23,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { EditarRegistroComponent } from './editar-registro/editar-registro.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 // Firebase configuration object
 
 
@@ -50,7 +52,8 @@ import { EditarRegistroComponent } from './editar-registro/editar-registro.compo
     MatSelectModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
