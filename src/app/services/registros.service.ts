@@ -21,17 +21,22 @@ export class RegistroService {
   }
 
   getRegistros(): Observable<Registro[]> {
-    return this.registrosRef
+    return this.db
+      .list('/registros')
       .snapshotChanges()
       .pipe(
-        map((changes: any[]) =>
-          changes.map((c: any) => {
-            const registro = c.payload.val();
-            return { id: c.payload.key, ...registro };
+        map((changes) =>
+          changes.map((c) => {
+            const data = c.payload.val() as Registro;
+            const id = c.payload.key!;
+            const registro: Registro = { ...data, id: id }; // Aquí, estamos asignando la propiedad `id` en un objeto separado
+            return registro;
           })
         )
       );
   }
+  
+  
 
   getRegistroById(id: string): Observable<Registro > {
     return this.db

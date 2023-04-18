@@ -54,7 +54,7 @@ export class EditarRegistroComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.registroId = params['id'];
-      
+  
       if (this.registroId) {
         this.registroService.getRegistroById(this.registroId).subscribe(registro => {
           this.registro = registro;
@@ -62,7 +62,7 @@ export class EditarRegistroComponent implements OnInit {
         });
       } else {
         // Redirigir al usuario a la página de registros si el registroId es inválido
-        this.router.navigate(['/editar-registro']);
+        this.router.navigate(['/tabla']); // Cambiar aquí a una ruta válida
       }
     });
   }
@@ -70,14 +70,20 @@ export class EditarRegistroComponent implements OnInit {
   
   onSubmit(event: Event): void {
     event.preventDefault();
+  
+    // Verificar si el registroId está vacío
+    if (!this.registroId || this.registroId.trim() === '') {
+      console.error('El ID del registro está vacío.');
+      return;
+    }
+  
     const updatedRegistro = {
       ...this.registroForm.value,
       id: this.registroId
     };
-    
   
     this.registroService.updateRegistro(this.registroId, updatedRegistro).then(() => {
-      this.router.navigate(['/editar-registro']);
+      this.router.navigate(['/tabla']); 
     });
   }
   
