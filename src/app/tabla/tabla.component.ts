@@ -23,7 +23,7 @@ import { TDocumentDefinitions } from 'pdfmake/interfaces';
 })
 export class TablaComponent implements OnInit {
 
-  displayedColumns: string[] = ['identificacion', 'idInventario', 'modelo', 'serie', 'direccionIp', 'usuario', 'adminEntrego', 'fechaEntrega', 'area', 'cargo', 'acciones'];
+  displayedColumns: string[] = ['identificacion', 'idInventario', 'modelo', 'serie', 'direccionIp', 'usuario', 'adminEntrego', 'fechaEntrega', 'area', 'cargo'];
   dataSource = new MatTableDataSource<Registro>();
 
   constructor(private registroService: RegistroService, private router: Router, private dialog: MatDialog) { }
