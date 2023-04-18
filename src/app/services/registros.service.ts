@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/datab
 import { Registro } from '../models/registro.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class RegistroService {
   }
 
   addRegistro(registro: Registro) {
-    return this.registrosRef.push(registro);
+    const id = uuidv4();
+    return this.db.object(`/registros/${id}`).set({ ...registro, id });
   }
 
   getRegistros(): Observable<Registro[]> {
@@ -23,10 +25,11 @@ export class RegistroService {
       .snapshotChanges()
       .pipe(
         map((changes: any[]) =>
-          changes.map((c: any) => ({ key: c.payload.key, ...c.payload.val() }))
+          changes.map((c: any) => ({ id: c.payload.key, ...c.payload.val() }))
         )
       );
   }
+  
 
   getRegistroById(id: string): Observable<Registro > {
     return this.db
