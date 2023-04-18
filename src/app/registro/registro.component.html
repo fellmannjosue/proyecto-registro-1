@@ -108,112 +108,43 @@
         <div class="col ">
           <mat-form-field appearance="outline">
             <mat-label>Área</mat-label>
-            <mat-select [(value)]="registro.area" name="area">
-
+            <mat-select [(value)]="registro.area" name="area" (selectionChange)="onAreaChange($event)">
               <mat-option value="Area Bilingue">Área Bilingue</mat-option>
               <mat-option value="Área Colegio">Área Colegio</mat-option>
-              <mat-option value="Área Administracion">
-                Área Administracion
-              </mat-option>
+              <mat-option value="Área Administracion">Área Administracion</mat-option>
               <mat-option value="Laboratorios">Laboratorios</mat-option>
               <mat-option value="Área CFP">Área CFP</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
-      <!-- Área, Cargo y Aula -->
-      <div class="row">
-        <div class="col ">
-          <mat-form-field appearance="outline">
-            <mat-label>Cargo</mat-label>
-            <mat-select [(value)]="registro.cargo" name="cargo">
-              <!-- ADMIN -->
-              <mat-option value="Administracion direccion">
-                Administracion direccion
-              </mat-option>
-              <mat-option value="Administracion secretaria">
-                Administracion secretaria
-              </mat-option>
-              <mat-option value="Administracion">Administracion</mat-option>
-              <!-- CFP -->
-              <mat-option value="Equipo Instructor">Equipo Instructor</mat-option>
-              <!--COL-->
-              <mat-option value="I Bachillerato">I Bachillerato</mat-option>
-              <mat-option value="II Bachillerato">II Bachillerato</mat-option>
-              <mat-option value="Laboratorio de Ciencias">
-                Laboratorio de ciencias
-              </mat-option>
-              <mat-option value="Español">Español</mat-option>
-              <mat-option value="Matematicas">Matematicas</mat-option>
-              <mat-option value="estudios sociales">estudios sociales</mat-option>
-              <mat-option value="Ingles basico">Ingles basico</mat-option>
-              <!--LABS-->
-              <mat-option value="Laboratorio CFP">Laboratorio CFP</mat-option>
-              <mat-option value="Laboratorio Col">Laboratorio Col</mat-option>
-              <mat-option value="Laboratorio BL">Laboratorio BL</mat-option>
-              <!--BL-->
-              <mat-option value="Ingles Avanzado">Ingles Avanzado</mat-option>
-              <mat-option value="Kinder">Kinder</mat-option>
-              <mat-option value="Prepa 1">Prepa 1</mat-option>
-              <mat-option value="Prepa 2">Prepa 2</mat-option>
-              <mat-option value="Primero 1">Primero 1</mat-option>
-              <mat-option value="Primero 2">Primero 2</mat-option>
-              <mat-option value="Segundo 1">Segundo 1</mat-option>
-              <mat-option value="Segundo 2">Segundo 2</mat-option>
-              <mat-option value="Tecero 1">Tecero 1</mat-option>
-              <mat-option value="Tecero 2">Tercero 2</mat-option>
-              <mat-option value="Cuarto 1">Cuarto 1</mat-option>
-              <mat-option value="Cuarto 2">Cuarto 2</mat-option>
-              <mat-option value="Quinto 1">Quinto 1</mat-option>
-              <mat-option value="Quinto 2">Quinto 2</mat-option>
-              <mat-option value="Sexto 1">Sexto 1</mat-option>
-              <mat-option value="Sexto 2">Sexto 2</mat-option>
-              <mat-option value="Septimo">Septimo</mat-option>
-              <mat-option value="Octavo">Octavo</mat-option>
-              <mat-option value="Noveno">Noveno</mat-option>
-              <mat-option value="Matematicas BL 1">Matematicas BL 1</mat-option>
-              <mat-option value="Matematicas BL 2">Matematicas BL 2</mat-option>
-              <mat-option value="Matematicas BL 3">Matematicas BL 3</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col ">
-          <mat-form-field appearance="outline">
-            <mat-label>Aula</mat-label>
-            <mat-select [(value)]="registro.aula" name="aula">
-              <!--administracion-->
-              <mat-option value="Edificio Admin">Edificio Admin</mat-option>
-              <mat-option value="Aulas Colegio">Aulas Colegio</mat-option>
-              <!-- kinder, prepa  -->
-              <mat-option value="Aula1k">AulaK</mat-option>
-              <mat-option value="Aula2k">AulaP1</mat-option>
-              <mat-option value="Aula3k">AulaP2</mat-option>
-              <!-- primaria -->
-              <mat-option value="Aula4p">AulaP1</mat-option>
-              <mat-option value="Aula5p">AulaP2</mat-option>
-              <mat-option value="Aula6p">AulaS1</mat-option>
-              <mat-option value="Aula7p">AulaS2</mat-option>
-              <mat-option value="Aula8p">AulaT1</mat-option>
-              <mat-option value="Aula9p">AulaT2</mat-option>
-              <mat-option value="Aula10p">AulaC1</mat-option>
-              <mat-option value="Aula11p">AulaC2</mat-option>
-              <mat-option value="Aula12p">AulaQ1</mat-option>
-              <mat-option value="Aula13p">AulaQ2</mat-option>
-              <mat-option value="Aula14p">AulaS1</mat-option>
-              <mat-option value="Aula15p">AulaS2</mat-option>
-              <!-- secundaria -->
-              <mat-option value="Aula16s">AulaS</mat-option>
-              <mat-option value="Aula17s">AulaO</mat-option>
-              <mat-option value="Aula18s">AulaN</mat-option>
-              <!-- extra(ingles avanzado,biblioteca,sala maestros,lab ciencias bl(aula meastras español))  -->
-              <mat-option value="Aula19e">AulaI.A</mat-option>
-              <mat-option value="Aula20e">AulaB</mat-option>
-              <mat-option value="Aula21e">AulaSM</mat-option>
-              <mat-option value="Aula22e">AulaME</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
+    
+<!-- Área, Cargo y Aula -->
+<div class="row">
+  
+  <div class="col ">
+    <mat-form-field appearance="outline">
+      <mat-label>Cargo</mat-label>
+      <mat-select [(value)]="registro.cargo" name="cargo">
+        <ng-container *ngFor="let cargo of cargosFiltrados">
+          <mat-option [value]="cargo.value">{{ cargo.viewValue }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col ">
+    <mat-form-field appearance="outline">
+      <mat-label>Aula</mat-label>
+      <mat-select [(value)]="registro.aula" name="aula">
+        <ng-container *ngFor="let aula of aulasFiltradas">
+          <mat-option [value]="aula.value">{{ aula.viewValue }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<!--...-->
+
       <!-- Observaciones -->
 
       <div class="row">

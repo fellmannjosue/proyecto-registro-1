@@ -27,6 +27,13 @@ export class RegistroComponent {
     aula: '',
     observaciones: '',
   };
+  cargosFiltrados: any[] = [];
+  aulasFiltradas: any[] = [];
+
+  // Asegúrate de importar el área, los cargos y las aulas aquí
+  areas: any[] = ['Área Bilingue','Área Colegio'];
+  cargos: any[] = ['Maestro Guia','Maestro Asociado'];
+  aulas: any[] = ['kinder','prepa 1','prepa 2','primero 1','primero 2','segundo 1','segundo 2','tercero 1','tercero 2','cuarto 1'];
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -37,5 +44,10 @@ export class RegistroComponent {
     }).catch((error) => {
       console.error('Error al guardar el registro en Firebase', error);
     });
+  }
+
+  onAreaChange(event: any) {
+    this.cargosFiltrados = this.cargos.filter(cargo => cargo.area === event.value);
+    this.aulasFiltradas = this.aulas.filter(aula => aula.area === event.value);
   }
 }
