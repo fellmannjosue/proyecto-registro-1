@@ -29,14 +29,12 @@ export class RegistroService {
           changes.map((c) => {
             const data = c.payload.val() as Registro;
             const id = c.payload.key!;
-            const registro: Registro = { ...data, id: id }; // Aquí, estamos asignando la propiedad `id` en un objeto separado
+            const registro: Registro = { ...data, id: id };
             return registro;
           })
         )
       );
   }
-  
-  
 
   getRegistroById(id: string): Observable<Registro > {
     return this.db
