@@ -62,7 +62,29 @@ export class EditarRegistroComponent implements OnInit {
       if (this.registroId) {
         this.registroService.getRegistroById(this.registroId).subscribe(registro => {
           this.registro = registro;
-          this.registroForm.patchValue({ ...this.registro, id: this.registroId });
+          // Asigna los valores al formulario
+          this.registroForm.patchValue({
+            identificacion: registro.identificacion,
+            idInventario: registro.idInventario,
+            serie: registro.serie,
+            modelo: registro.modelo,
+            siglas: registro.siglas,
+            usuario: registro.usuario,
+            usuarioAdmin: registro.usuarioAdmin,
+            fechaEntrega: new Date(registro.fechaEntrega),
+            ipEstatus: registro.ipEstatus,
+            direccionIP: registro.direccionIP,
+            observaciones: registro.observaciones
+          });
+  
+          // Asigna los valores a registro.area, registro.cargo, registro.aula y registro.entregado
+          this.registro.area = registro.area;
+          this.registro.cargo = registro.cargo;
+          this.registro.aula = registro.aula;
+          this.registro.entregado = registro.entregado;
+  
+          // Llama a onAreaChange para actualizar los cargos y aulas disponibles
+          this.onAreaChange({ value: this.registro.area });
         });
       } else {
         // Redirigir al usuario a la página de registros si el registroId es inválido
@@ -70,6 +92,7 @@ export class EditarRegistroComponent implements OnInit {
       }
     });
   }
+  
   
   
   onSubmit(event: Event): void {
