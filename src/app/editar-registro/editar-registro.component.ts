@@ -47,6 +47,10 @@ export class EditarRegistroComponent implements OnInit {
       fechaEntrega: new FormControl(''),
       ipEstatus: new FormControl(''),
       direccionIP: new FormControl(''),
+      entregado: new FormControl(''),
+      area: new FormControl(''),
+      cargo: new FormControl(''),
+      aula: new FormControl(''),
       observaciones: new FormControl('')
     });
   }
@@ -91,4 +95,49 @@ export class EditarRegistroComponent implements OnInit {
   onCancel(): void {
     this.router.navigate(['/tabla']); // Reemplaza '/registros' con la ruta donde se muestran los registros
   }
+  areasCargos = {
+    'Área Bilingue': [
+      'maestro guia','maestro de español','maestro de matematicas','maestro de ingles'
+    ],
+    'Área Colegio': [
+      
+    ],
+    'Área Administracion': [
+      // Cargos de Área Administracion
+    ],
+    'Laboratorios': [
+      // Cargos de Laboratorios
+    ],
+    'Área CFP': [
+      // Cargos de Área CFP
+    ],
+  };
+
+  areasAulas = {
+    'Área Bilingue': [
+      // Aulas de Área Bilingue
+    ],
+    'Área Colegio': [
+      // Aulas de Área Colegio
+    ],
+    'Área Administracion': [
+      // Aulas de Área Administracion
+    ],
+    'Laboratorios': [
+      // Aulas de Laboratorios
+    ],
+    'Área CFP': [
+      // Aulas de Área CFP
+    ],
+  };
+
+  filteredCargos: string[] = [];
+  filteredAulas: string[] = [];
+
+  onAreaChange(event: any) {
+    const area = event.value as keyof typeof this.areasCargos;
+    this.filteredCargos = this.areasCargos[area] || [];
+    this.filteredAulas = this.areasAulas[area] || [];
+  }
+  
 }

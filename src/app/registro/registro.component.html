@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <!-- Checkbox Entregado -->
+      <!-- Área,Checkbox Entregado -->
       <div class="row">
         <div class="col">
           <mat-checkbox [(ngModel)]="registro.entregado" name="entregado">Entregado</mat-checkbox>
@@ -109,7 +109,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Área</mat-label>
             <mat-select [(value)]="registro.area" name="area" (selectionChange)="onAreaChange($event)">
-              <mat-option value="Area Bilingue">Área Bilingue</mat-option>
+              <mat-option value="Área Bilingue">Área Bilingue</mat-option>
               <mat-option value="Área Colegio">Área Colegio</mat-option>
               <mat-option value="Área Administracion">Área Administracion</mat-option>
               <mat-option value="Laboratorios">Laboratorios</mat-option>
@@ -118,31 +118,30 @@
           </mat-form-field>
         </div>
       </div>
-    
-<!-- Área, Cargo y Aula -->
+<!--  Cargo y Aula -->
 <div class="row">
-  
-  <div class="col ">
-    <mat-form-field appearance="outline">
-      <mat-label>Cargo</mat-label>
-      <mat-select [(value)]="registro.cargo" name="cargo">
-        <ng-container *ngFor="let cargo of cargosFiltrados">
-          <mat-option [value]="cargo.value">{{ cargo.viewValue }}</mat-option>
-        </ng-container>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="col ">
-    <mat-form-field appearance="outline">
-      <mat-label>Aula</mat-label>
-      <mat-select [(value)]="registro.aula" name="aula">
-        <ng-container *ngFor="let aula of aulasFiltradas">
-          <mat-option [value]="aula.value">{{ aula.viewValue }}</mat-option>
-        </ng-container>
-      </mat-select>
-    </mat-form-field>
-  </div>
-</div>
+        <div class="col ">
+          <mat-form-field appearance="outline">
+            <mat-label>Cargo</mat-label>
+            <mat-select [(value)]="registro.cargo" name="cargo">
+              <ng-container *ngFor="let cargo of filteredCargos">
+                <mat-option [value]="cargo">{{ cargo }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col ">
+          <mat-form-field appearance="outline">
+            <mat-label>Aula</mat-label>
+            <mat-select [(value)]="registro.aula" name="aula">
+              <ng-container *ngFor="let aula of filteredAulas">
+                <mat-option [value]="aula">{{ aula }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
 
       <!-- Observaciones -->
 

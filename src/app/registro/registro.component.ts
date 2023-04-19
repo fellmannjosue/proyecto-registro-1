@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Registro } from '../models/registro.model';
 
-
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -10,7 +9,7 @@ import { Registro } from '../models/registro.model';
 })
 export class RegistroComponent {
   registro: Registro = {
-    id:'',
+    id: '',
     identificacion: '',
     idInventario: '',
     serie: '',
@@ -27,27 +26,65 @@ export class RegistroComponent {
     aula: '',
     observaciones: '',
   };
-  cargosFiltrados: any[] = [];
-  aulasFiltradas: any[] = [];
 
-  // Asegúrate de importar el área, los cargos y las aulas aquí
-  areas: any[] = ['Área Bilingue','Área Colegio'];
-  cargos: any[] = ['Maestro Guia','Maestro Asociado'];
-  aulas: any[] = ['kinder','prepa 1','prepa 2','primero 1','primero 2','segundo 1','segundo 2','tercero 1','tercero 2','cuarto 1'];
+  areasCargos = {
+    'Área Bilingue': [
+      'maestro guia',
+      'maestro de español',
+      'maestro de matematicas',
+      'maestro de ingles',
+    ],
+    'Área Colegio': [],
+    'Área Administracion': [
+      // Cargos de Área Administracion
+    ],
+    Laboratorios: [
+      // Cargos de Laboratorios
+    ],
+    'Área CFP': [
+      // Cargos de Área CFP
+    ],
+  };
 
-  constructor(private db: AngularFireDatabase) { }
+  areasAulas = {
+    'Área Bilingue': [
+      // Aulas de Área Bilingue
+    ],
+    'Área Colegio': [
+      // Aulas de Área Colegio
+    ],
+    'Área Administracion': [
+      // Aulas de Área Administracion
+    ],
+    Laboratorios: [
+      // Aulas de Laboratorios
+    ],
+    'Área CFP': [
+      // Aulas de Área CFP
+    ],
+  };
+
+  filteredCargos: string[] = [];
+  filteredAulas: string[] = [];
+
+  constructor(private db: AngularFireDatabase) {}
 
   onSubmit(event: Event) {
     event.stopPropagation();
-    this.db.list('registros').push(this.registro).then(() => {
-      console.log('Registro guardado en Firebase');
-    }).catch((error) => {
-      console.error('Error al guardar el registro en Firebase', error);
-    });
+    this.db
+      .list('registros')
+      .push(this.registro)
+      .then(() => {
+        console.log('Registro guardado en Firebase');
+      })
+      .catch((error) => {
+        console.error('Error al guardar el registro en Firebase', error);
+      });
   }
 
   onAreaChange(event: any) {
-    this.cargosFiltrados = this.cargos.filter(cargo => cargo.area === event.value);
-    this.aulasFiltradas = this.aulas.filter(aula => aula.area === event.value);
+    const area = event.value as keyof typeof this.areasCargos;
+    this.filteredCargos = this.areasCargos[area] || [];
+    this.filteredAulas = this.areasAulas[area] || [];
   }
 }

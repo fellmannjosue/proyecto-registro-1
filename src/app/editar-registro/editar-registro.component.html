@@ -72,15 +72,14 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Fecha de entrega</mat-label>
-            <input matInput formControlName="fechaEntrega" [matDatepicker]="picker"
-              placeholder="Elija una fecha" />
+            <input matInput formControlName="fechaEntrega" [matDatepicker]="picker" placeholder="Elija una fecha" />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
       </div>
 
-              <!-- IP Estatus y Dirección -->
+      <!-- IP Estatus y Dirección -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
@@ -95,6 +94,49 @@
           <mat-form-field appearance="outline">
             <mat-label>Dirección</mat-label>
             <input matInput formControlName="direccionIP" />
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Área,Checkbox Entregado -->
+      <div class="row">
+        <div class="col">
+          <mat-checkbox formControlName="entregado">Entregado</mat-checkbox>
+
+        </div>
+        <div class="col ">
+          <mat-form-field appearance="outline">
+            <mat-label>Área</mat-label>
+            <mat-select formControlName="area" (selectionChange)="onAreaChange($event)">
+              <mat-option value=""> </mat-option>
+              <mat-option value="Área Bilingue">Área Bilingue</mat-option>
+              <mat-option value="Área Colegio">Área Colegio</mat-option>
+              <mat-option value="Área Administracion">Área Administracion</mat-option>
+              <mat-option value="Laboratorios">Laboratorios</mat-option>
+              <mat-option value="Área CFP">Área CFP</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--  Cargo y Aula -->
+      <div class="row">
+        <div class="col ">
+          <mat-form-field appearance="outline">
+            <mat-label>Cargo</mat-label>
+            <mat-select formControlName="cargo">
+              <ng-container *ngFor="let cargo of filteredCargos">
+                <mat-option [value]="cargo">{{ cargo }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col ">
+          <mat-form-field appearance="outline">
+            <mat-label>Aula</mat-label>
+            <mat-select formControlName="aula">
+              <ng-container *ngFor="let aula of filteredAulas">
+                <mat-option [value]="aula">{{ aula }}</mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
         </div>
       </div>
@@ -120,4 +162,3 @@
     </form>
   </div>
 </div>
-
