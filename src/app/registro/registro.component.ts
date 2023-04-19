@@ -26,6 +26,7 @@ export class RegistroComponent {
     aula: '',
     observaciones: '',
   };
+  direccionIPDisabled = true;
   //select de cargo
   areasCargos = {
     'Área Bilingue': [
@@ -130,17 +131,10 @@ export class RegistroComponent {
   onIpEstatusChange(event: any): void {
     const ipEstatus = event.value;
     if (ipEstatus === 'DHCP') {
-      const randomIp = this.generateRandomIp();
-      this.registro.direccionIP = randomIp;
+      this.direccionIPDisabled = true;
+      this.registro.direccionIP = ''; // Limpiar el campo 'direccionIP' cuando se selecciona 'DHCP'
     } else {
-      this.registro.direccionIP = '';
+      this.direccionIPDisabled = false;
     }
-  }
-
-  generateRandomIp(): string {
-    const randomNumber = (min: number, max: number) =>
-      Math.floor(Math.random() * (max - min + 1)) + min;
-    const ip = `192.168.10.${randomNumber(2, 254)}`;
-    return ip;
   }
 }

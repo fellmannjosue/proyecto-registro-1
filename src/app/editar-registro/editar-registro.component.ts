@@ -206,22 +206,15 @@ export class EditarRegistroComponent implements OnInit {
 
   onIpEstatusChange(event: any): void {
     const ipEstatus = event.value;
-    if (ipEstatus === 'DHCP') {
-      const randomIp = this.generateRandomIp();
-      if (this.registroForm && this.registroForm.controls && this.registroForm.controls['direccionIP']) {
-        this.registroForm.controls['direccionIP'].patchValue(randomIp);
-      }
-    } else {
-      if (this.registroForm && this.registroForm.controls && this.registroForm.controls['direccionIP']) {
-        this.registroForm.controls['direccionIP'].patchValue('');
-      }
-    }
-  }
+    const direccionIPControl = this.registroForm.controls['direccionIP'];
   
-  generateRandomIp(): string {
-    const randomNumber = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
-    const ip = `192.168.10.${randomNumber(2, 254)}`;
-    return ip;
+    if (ipEstatus === 'DHCP') {
+      direccionIPControl.patchValue(''); // Limpia el valor del campo de dirección IP
+      direccionIPControl.disable(); // Deshabilita el campo de dirección IP cuando se selecciona DHCP
+    } else {
+      direccionIPControl.patchValue('');
+      direccionIPControl.enable(); // Habilita el campo de dirección IP cuando se selecciona Estática
+    }
   }
   
 }

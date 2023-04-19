@@ -82,23 +82,24 @@
       </div>
 
       <!-- IP Estatus y Dirección IP -->
-      <div class="row">
-        <div class="col">
-        <mat-form-field appearance="outline">
-          <mat-label>IP Estatus</mat-label>
-          <mat-select formControlName="ipEstatus" (selectionChange)="onIpEstatusChange($event)">
-            <mat-option value="DHCP">DHCP</mat-option>
-            <mat-option value="Estática">Estática</mat-option>
-          </mat-select>
-        </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field appearance="outline">
-            <mat-label>Dirección IP</mat-label>
-            <input matInput [(ngModel)]="registro.direccionIP" name="direccionIp" />
-          </mat-form-field>
-        </div>
-      </div>
+<div class="row">
+  <div class="col">
+    <mat-form-field appearance="outline">
+      <mat-label>IP Estatus</mat-label>
+      <mat-select formControlName="ipEstatus" (selectionChange)="onIpEstatusChange($event)">
+        <mat-option value="DHCP">DHCP</mat-option>
+        <mat-option value="Estática">Estática</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field appearance="outline">
+      <mat-label>Dirección IP</mat-label>
+      <input matInput [(ngModel)]="registro.direccionIP" name="direccionIp" [disabled]="direccionIPDisabled" />
+    </mat-form-field>
+  </div>
+</div>
+
 
       <!-- Área,Checkbox Entregado -->
       <div class="row">
