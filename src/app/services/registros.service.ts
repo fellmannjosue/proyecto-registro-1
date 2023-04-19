@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Registro } from '../models/registro.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -11,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class RegistroService {
   private registrosRef: AngularFireList<Registro>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private firestore: AngularFirestore) {
     this.registrosRef = this.db.list('/registros');
   }
 
@@ -47,8 +49,8 @@ export class RegistroService {
       );
   }
 
-  updateRegistro(id: string, registro: Registro): Promise<void> {
-    return this.registrosRef.update(id, registro);
+  updateRegistro(registroId: string, updatedRegistro: Registro) {
+    return this.firestore.collection('registros').doc(registroId).update(updatedRegistro);
   }
 
   // Añadir la función eliminarRegistro aquí

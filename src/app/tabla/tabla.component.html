@@ -41,9 +41,9 @@
           <td>{{ registro.serie }}</td>
           <td>{{ registro.direccionIP }}</td>
           <td>{{ registro.usuario }}</td>
+          <td>{{ registro.fechaEntrega | date }}</td>
           <td>{{ registro.area }}</td>
           <td>{{ registro.cargo }}</td>
-          <td>{{ registro.fechaEntrega | date }}</td>
           <td>{{ registro.entregado ? '✔️' : '❌' }}</td>
           <td>
             <button mat-icon-button color="accent" (click)="editarRegistro(registro)">
