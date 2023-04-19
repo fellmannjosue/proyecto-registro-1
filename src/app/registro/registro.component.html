@@ -84,13 +84,13 @@
       <!-- IP Estatus y Dirección IP -->
       <div class="row">
         <div class="col">
-          <mat-form-field appearance="outline">
-            <mat-label>IP Estatus</mat-label>
-            <mat-select [(value)]="registro.ipEstatus" name="ipEstatus">
-              <mat-option value="DHCP">DHCP</mat-option>
-              <mat-option value="Estática">Estática</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>IP Estatus</mat-label>
+          <mat-select formControlName="ipEstatus" (selectionChange)="onIpEstatusChange($event)">
+            <mat-option value="DHCP">DHCP</mat-option>
+            <mat-option value="Estática">Estática</mat-option>
+          </mat-select>
+        </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field appearance="outline">

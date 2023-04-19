@@ -87,4 +87,22 @@ export class RegistroComponent {
     this.filteredCargos = this.areasCargos[area] || [];
     this.filteredAulas = this.areasAulas[area] || [];
   }
+
+  onIpEstatusChange(event: any): void {
+    const ipEstatus = event.value;
+    if (ipEstatus === 'DHCP') {
+      const randomIp = this.generateRandomIp();
+      this.registro.direccionIP = randomIp;
+    } else {
+      this.registro.direccionIP = '';
+    }
+  }
+
+  
+  generateRandomIp(): string {
+    const randomNumber = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+    const ip = `192.168.10.${randomNumber(2, 254)}`;
+    return ip;
+  }
+  
 }

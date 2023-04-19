@@ -84,7 +84,7 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>IP Estatus</mat-label>
-            <mat-select formControlName="ipEstatus">
+            <mat-select formControlName="ipEstatus" (selectionChange)="onIpEstatusChange($event)">
               <mat-option value="DHCP">DHCP</mat-option>
               <mat-option value="Estática">Estática</mat-option>
             </mat-select>
@@ -101,7 +101,6 @@
       <div class="row">
         <div class="col">
           <mat-checkbox formControlName="entregado">Entregado</mat-checkbox>
-
         </div>
         <div class="col ">
           <mat-form-field appearance="outline">
