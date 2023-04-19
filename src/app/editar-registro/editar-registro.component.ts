@@ -118,40 +118,81 @@ export class EditarRegistroComponent implements OnInit {
   onCancel(): void {
     this.router.navigate(['/tabla']); // Reemplaza '/registros' con la ruta donde se muestran los registros
   }
+  //select de cargo
   areasCargos = {
     'Área Bilingue': [
-      'maestro guia','maestro de español','maestro de matematicas','maestro de ingles'
+      'maestro de Grado',
+      'maestro de Español',
+      'maestro de Sociales',
+      'maestro de Matematicas',
+      'maestro de Ingles Avanzado',
     ],
     'Área Colegio': [
-      
+      'Maestro de Fisica',
+      'Maestro de Ciencias',
+      'Maestro de Filosofia',
+      'Maestro de Lenguaje',
+      'Maestro de Matematicas',
+      'Maestro de Sociales',
+      'Maestro de Ingles Basico',
     ],
     'Área Administracion': [
-      // Cargos de Área Administracion
+      'Administracion Direcion',
+      'Administracion Secretaria',
+      'Administracion General',
     ],
-    'Laboratorios': [
-      // Cargos de Laboratorios
+    Laboratorios: [
+      'Informatica Avanzada',
+      'Laboratorio de Billingüe',
+      'Laboratorio de Colegio',
     ],
-    'Área CFP': [
-      // Cargos de Área CFP
-    ],
+    'Área CFP': ['Maestro de MA', 'Maestro de P'],
   };
-
+  //select de aula
   areasAulas = {
     'Área Bilingue': [
-      // Aulas de Área Bilingue
+      'Kinder',
+      'Prepa 1',
+      'Prepa 2',
+      'Primero 1',
+      'Primero 2',
+      'Segundo 1',
+      'Segundo 2',
+      'Tercero 1',
+      'Tercero 2',
+      'Cuarto 1',
+      'Cuarto 2',
+      'Quinto 1',
+      'Quinto 2',
+      'Sexto 1',
+      'Sexto 2',
+      'Septimo',
+      'Octavo',
+      'Noveno',
+      'Aula de Ingles', // aula donde el mr ruiz y mis recarte dan clases
+      'Aula biblioteca', //oficina de coordinadoras
+      'Aula de ciencia', //aula donde estan las maestras de español
+      'Aula de maestro', //aula donde van maestros a trabajar
     ],
     'Área Colegio': [
-      // Aulas de Área Colegio
+      //PENDIENTE
+      'I bachillerato',
+      'Laboratorio de ciencias',
+      'II bachillerato',
+      'Octavo', //onelia
+      'Septimo', //edwin
+      'Casa Azul', //rosario
+      'casa Psicologia', //juan pablo
     ],
     'Área Administracion': [
-      // Aulas de Área Administracion
+      'Edificio Administrativo',
+      'Casa Amarilla', //donde esta vanessa
+      'Casa Azul', //donde esta fabiola,miguel
+      'Casa Psicologia', //donde esta gabi y bani
+      'Oficina Don Miguel',
     ],
-    'Laboratorios': [
-      // Aulas de Laboratorios
-    ],
-    'Área CFP': [
-      // Aulas de Área CFP
-    ],
+    Laboratorios: ['Iformatica', 'Computacion col', 'Computacion bl'],
+    'Área CFP': ['Panaderia', 'Automotriz'],
   };
 
   filteredCargos: string[] = [];
