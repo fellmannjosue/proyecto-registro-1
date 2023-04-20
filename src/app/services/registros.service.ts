@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Registro } from '../models/registro.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -11,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class RegistroService {
   private registrosRef: AngularFireList<Registro>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase,private firestore: AngularFirestore) {
     this.registrosRef = this.db.list('/registros');
   }
 
@@ -55,4 +57,15 @@ export class RegistroService {
   eliminarRegistro(id: string): Promise<void> {
     return this.registrosRef.remove(id);
   }
+  checkDuplicateSerie(serie: string): Promise<boolean> {
+    return this.db
+      .list('registros', (ref) => ref.orderByChild('serie').equalTo(serie))
+      .query
+      .once('value')
+      .then((snapshot) => {
+        return snapshot.exists();
+      });
+  }
+  
+  
 }

@@ -213,12 +213,13 @@ export class EditarRegistroComponent implements OnInit {
     const direccionIPControl = this.registroForm.controls['direccionIP'];
   
     if (ipEstatus === 'DHCP') {
-      direccionIPControl.patchValue(''); // Limpia el valor del campo de dirección IP
-      direccionIPControl.disable(); // Deshabilita el campo de dirección IP cuando se selecciona DHCP
-    } else {
       direccionIPControl.patchValue('');
-      direccionIPControl.enable(); // Habilita el campo de dirección IP cuando se selecciona Estática
+      direccionIPControl.disable();
+    } else {
+      direccionIPControl.patchValue('192.168.10.');
+      direccionIPControl.enable();
     }
   }
+  
   
 }

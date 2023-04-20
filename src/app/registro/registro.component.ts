@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Registro } from '../models/registro.model';
+import { RegistroService } from '../services/registros.service';
 
 @Component({
   selector: 'app-registro',
@@ -107,25 +108,32 @@ export class RegistroComponent {
   filteredCargos: string[] = [];
   filteredAulas: string[] = [];
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase, private registroService: RegistroService) {}
+
 
   onSubmit(event: Event) {
     event.stopPropagation();
   
-    // Agregar el prefijo "192.168.10." al valor ingresado por el usuario si la opción "Estática" está seleccionada
-    if (this.registro.ipEstatus === 'Estática') {
-      this.registro.direccionIP = `192.168.10.${this.registro.direccionIP}`;
-    }
+    this.registroService.checkDuplicateSerie(this.registro.serie).then((isDuplicate) => {
+      if (isDuplicate) {
+        alert('Hay un registro doble');
+      } else {
+        // Agregar el prefijo "192.168.10." al valor ingresado por el usuario si la opción "Estática" está seleccionada
+        if (this.registro.ipEstatus === 'Estática') {
+          this.registro.direccionIP = `192.168.10.${this.registro.direccionIP}`;
+        }
   
-    this.db
-      .list('registros')
-      .push(this.registro)
-      .then(() => {
-        console.log('Registro guardado en Firebase');
-      })
-      .catch((error) => {
-        console.error('Error al guardar el registro en Firebase', error);
-      });
+        this.db
+          .list('registros')
+          .push(this.registro)
+          .then(() => {
+            alert('Registro guardado en Firebase');
+          })
+          .catch((error) => {
+            alert(`Error al guardar el registro en Firebase: ${error}`);
+          });
+      }
+    });
   }
   
   onAreaChange(event: any) {
@@ -136,11 +144,14 @@ export class RegistroComponent {
 
   onIpEstatusChange(event: any): void {
     const ipEstatus = event.value;
+  
     if (ipEstatus === 'DHCP') {
+      this.registro.direccionIP = '';
       this.direccionIPDisabled = true;
-      this.registro.direccionIP = ''; // Limpiar el campo 'direccionIP' cuando se selecciona 'DHCP'
     } else {
+      this.registro.direccionIP = '192.168.10.';
       this.direccionIPDisabled = false;
     }
   }
+  
 }

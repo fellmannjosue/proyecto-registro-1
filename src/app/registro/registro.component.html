@@ -97,7 +97,6 @@
       <mat-label>Dirección IP</mat-label>
       <div class="ip-wrapper">
         <input matInput [(ngModel)]="registro.direccionIP" name="direccionIp" [disabled]="direccionIPDisabled" />
-        <span *ngIf="registro.ipEstatus === 'Estática'">192.168.10.</span>
       </div>
     </mat-form-field>
   </div>
