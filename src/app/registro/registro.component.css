@@ -33,6 +33,16 @@
     margin-bottom: 0;
     color: snow;
   }
+  .ip-wrapper {
+    position: relative;
+  }
+  
+  .ip-wrapper span {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+  }
   
   .table {
     margin-bottom: 1.5rem;

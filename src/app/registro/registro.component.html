@@ -92,11 +92,16 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <mat-form-field appearance="outline">
-    <mat-label>Dirección IP</mat-label>
-    <input matInput [(ngModel)]="registro.direccionIP" name="direccionIp" [disabled]="direccionIPDisabled" />
-    <span matPrefix *ngIf="registro.ipEstatus === 'Estática'">192.168.10.</span>
-  </mat-form-field>
+  <div class="col">
+    <mat-form-field appearance="outline">
+      <mat-label>Dirección IP</mat-label>
+      <div class="ip-wrapper">
+        <input matInput [(ngModel)]="registro.direccionIP" name="direccionIp" [disabled]="direccionIPDisabled" />
+        <span *ngIf="registro.ipEstatus === 'Estática'">192.168.10.</span>
+      </div>
+    </mat-form-field>
+  </div>
+  
   
 </div>
 
