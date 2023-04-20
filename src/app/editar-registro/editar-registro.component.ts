@@ -74,7 +74,11 @@ export class EditarRegistroComponent implements OnInit {
             fechaEntrega: new Date(registro.fechaEntrega),
             ipEstatus: registro.ipEstatus,
             direccionIP: registro.direccionIP,
-            observaciones: registro.observaciones
+            observaciones: registro.observaciones,
+            area: registro.area, // Agrega esto
+  cargo: registro.cargo, // Agrega esto
+  aula: registro.aula, // Agrega esto
+  entregado: registro.entregado // Agrega esto
           });
   
           // Asigna los valores a registro.area, registro.cargo, registro.aula y registro.entregado

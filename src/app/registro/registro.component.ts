@@ -111,6 +111,12 @@ export class RegistroComponent {
 
   onSubmit(event: Event) {
     event.stopPropagation();
+  
+    // Agregar el prefijo "192.168.10." al valor ingresado por el usuario si la opción "Estática" está seleccionada
+    if (this.registro.ipEstatus === 'Estática') {
+      this.registro.direccionIP = `192.168.10.${this.registro.direccionIP}`;
+    }
+  
     this.db
       .list('registros')
       .push(this.registro)
@@ -121,7 +127,7 @@ export class RegistroComponent {
         console.error('Error al guardar el registro en Firebase', error);
       });
   }
-
+  
   onAreaChange(event: any) {
     const area = event.value as keyof typeof this.areasCargos;
     this.filteredCargos = this.areasCargos[area] || [];
