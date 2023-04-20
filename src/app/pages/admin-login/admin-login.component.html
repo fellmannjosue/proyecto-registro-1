@@ -1,0 +1,19 @@
+<div class="login-container">
+    <h2>Iniciar sesión (Admin)</h2>
+    <form (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="email" name="email" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" [(ngModel)]="password" name="password" required>
+      </mat-form-field>
+  
+      <div>
+        <button mat-raised-button color="primary" type="submit">Iniciar sesión</button>
+      </div>
+    </form>
+  </div>
+  

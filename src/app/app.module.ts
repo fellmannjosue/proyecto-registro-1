@@ -24,6 +24,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { EditarRegistroComponent } from './editar-registro/editar-registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
+//lo nuevo
+import { TecnicoLoginComponent } from './pages/tecnico-login/tecnico-login.component';
+import { TecnicoRegisterComponent } from './pages/tecnico-register/tecnico-register.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AdminRegisterComponent } from './pages/admin-register/admin-register.component';
 
 // Firebase configuration object
 
@@ -35,6 +40,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     TablaComponent,
     ConfirmDialogComponent,
     EditarRegistroComponent,
+    TecnicoLoginComponent,
+    TecnicoRegisterComponent,
+    AdminLoginComponent,
+    AdminRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     RouterModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     MatFormFieldModule,
     MatInputModule,
