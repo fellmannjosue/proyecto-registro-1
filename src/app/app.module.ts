@@ -29,6 +29,8 @@ import { TecnicoLoginComponent } from './pages/tecnico-login/tecnico-login.compo
 import { TecnicoRegisterComponent } from './pages/tecnico-register/tecnico-register.component';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { AdminRegisterComponent } from './pages/admin-register/admin-register.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { IntroduccionComponent } from './pages/introduccion/introduccion.component';
 
 // Firebase configuration object
 
@@ -44,6 +46,8 @@ import { AdminRegisterComponent } from './pages/admin-register/admin-register.co
     TecnicoRegisterComponent,
     AdminLoginComponent,
     AdminRegisterComponent,
+    WelcomeComponent,
+    IntroduccionComponent,
   ],
   imports: [
     BrowserModule,

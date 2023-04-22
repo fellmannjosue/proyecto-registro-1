@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-admin-register',
   templateUrl: './admin-register.component.html',
@@ -11,12 +13,12 @@ export class AdminRegisterComponent {
   password: string='';
   role: string='';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private router: Router) {}
 
   onRegister(): void {
     this.userService.register(this.email, this.password, this.role).then(() => {
-      // Redirigir a la pantalla de registro, tabla y editar
-    }).catch((error) => {
+      this.router.navigate(['/tabla']); 
+        }).catch((error) => {
       console.error('Error al registrarse', error);
     });
   }

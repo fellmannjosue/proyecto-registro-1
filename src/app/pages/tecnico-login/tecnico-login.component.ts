@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -10,11 +11,13 @@ export class TecnicoLoginComponent {
   email: string ='';
   password: string='';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, 
+    private route: ActivatedRoute,
+    private router: Router) {}
 
   onSubmit(): void {
     this.userService.login(this.email, this.password).then(() => {
-      // Redirigir a la pantalla de registro, tabla y editar
+      this.router.navigate(['/registro']); 
     }).catch((error) => {
       console.error('Error al iniciar sesión', error);
     });

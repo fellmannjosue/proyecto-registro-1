@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
@@ -10,11 +12,11 @@ export class AdminLoginComponent {
   email: string ='';
   password: string='';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private router: Router) {}
 
   onSubmit(): void {
     this.userService.login(this.email, this.password).then(() => {
-      // Redirigir a la pantalla de registro, tabla y editar
+      this.router.navigate(['/tabla']); 
     }).catch((error) => {
       console.error('Error al iniciar sesión', error);
     });
