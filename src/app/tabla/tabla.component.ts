@@ -73,9 +73,11 @@ export class TablaComponent implements OnInit {
       registro.direccionIP,
       registro.usuario,
       registro.usuarioAdmin,
-      registro.cargo,
+      moment(registro.fechaEntrega).format('DD/MM/YYYY'),
       registro.area,
-      registro.fechaEntrega,
+      registro.cargo,
+      
+      
     ]);
   
     const docDefinition: TDocumentDefinitions = {

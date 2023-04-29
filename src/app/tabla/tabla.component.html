@@ -12,7 +12,7 @@
         <button mat-raised-button color="primary" (click)="exportarExcel()">Exportar Excel</button>
         <button mat-raised-button color="primary" (click)="exportarPDF()">Exportar PDF</button>
         <button mat-raised-button color="primary" routerLink="/registro">
-          regresar
+          Regresar
         </button>
       </div>
     </div>
@@ -28,6 +28,7 @@
           <th>Fecha</th>
           <th>Cargo</th>
           <th>Area</th>
+          <th>Aula</th>
           <th>Entregado</th>
           <th>Acciones</th>
         </tr>
@@ -44,6 +45,7 @@
           <td>{{ registro.fechaEntrega | date }}</td>
           <td>{{ registro.area }}</td>
           <td>{{ registro.cargo }}</td>
+          <td>{{ registro.aula }}</td>
           <td>{{ registro.entregado ? '✔️' : '❌' }}</td>
           <td>
             <button mat-icon-button color="accent" (click)="editarRegistro(registro)">

@@ -31,11 +31,13 @@ export class RegistroComponent {
   //select de cargo
   areasCargos = {
     'Área Bilingue': [
-      'maestro de Grado',
-      'maestro de Español',
-      'maestro de Sociales',
-      'maestro de Matematicas',
-      'maestro de Ingles Avanzado',
+      'Maestro de Grado',
+      'Maestro de Español',
+      'Maestro de Sociales',
+      'Maestro de Matematicas',
+      'Equipo Extra Maestros',
+      'Maestro de Coordinacion',
+      'Maestro de Ingles Avanzado',
     ],
     'Área Colegio': [
       'Maestro de Fisica',
