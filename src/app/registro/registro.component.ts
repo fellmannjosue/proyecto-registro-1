@@ -120,7 +120,7 @@ export class RegistroComponent {
       } else {
         // Agregar el prefijo "192.168.10." al valor ingresado por el usuario si la opción "Estática" está seleccionada
         if (this.registro.ipEstatus === 'Estática') {
-          this.registro.direccionIP = `192.162.10.${this.registro.direccionIP}`;
+          this.registro.direccionIP = `192.168.10.${this.registro.direccionIP}`;
         }
   
         this.db
