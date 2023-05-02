@@ -23,7 +23,7 @@ import { TDocumentDefinitions } from 'pdfmake/interfaces';
 })
 export class TablaComponent implements OnInit {
 
-  displayedColumns: string[] = ['identificacion', 'idInventario', 'modelo', 'serie', 'direccionIp', 'usuario', 'adminEntrego', 'fechaEntrega', 'area', 'cargo'];
+  displayedColumns: string[] = ['identificacion', 'idInventario', 'modelo', 'serie', 'direccionIp', 'usuario', 'adminEntrego', 'fechaEntrega', 'area', 'cargo','aula'];
   dataSource = new MatTableDataSource<Registro>();
 
   constructor(private registroService: RegistroService, private router: Router, private dialog: MatDialog) { }
@@ -76,6 +76,7 @@ export class TablaComponent implements OnInit {
       moment(registro.fechaEntrega).format('DD/MM/YYYY'),
       registro.area,
       registro.cargo,
+      registro.aula,
       
       
     ]);
@@ -87,7 +88,7 @@ export class TablaComponent implements OnInit {
         {
           table: {
             headerRows: 1,
-            widths: ['10%', '10%', '10%', '8%', '15%', '10%', '10%', '10%', '8%', '8%','10%','10%'],
+            widths: ['10%', '10%', '10%', '8%', '15%', '10%', '10%', '10%', '8%', '8%','10%','10%','8%','10%'],
             body: [columnHeaders, ...tableData],
           },
         },
