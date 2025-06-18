@@ -1,27 +1,50 @@
-# RegistroInventariado
+Guía para el Despliegue y Gestión del Proyecto Django
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5.
+- Acceso al Servidor mediante SSH
+  - ssh admin2@192.168.10.6
+  - Inicie sesión de forma remota en el servidor utilizando el usuario admin2.
 
-## Development server
+- Obtener Permisos de Root
+  - sudo su
+  - Adquiera privilegios de administrador (root) para ejecutar comandos del sistema.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Recopilar Archivos Estáticos
+  - python manage.py collectstatic --noinput
+  - Transfiera todos los recursos estáticos (CSS, JS, imágenes) al directorio configurado sin solicitar confirmación.
 
-## Code scaffolding
+- Reiniciar Apache
+  - sudo systemctl restart apache2
+  - Reinicie el servidor web Apache para que reconozca los nuevos archivos estáticos y cambios de configuración.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Acceder al Directorio del Proyecto
+  - cd techcare_project
+  - Ingrese al directorio raíz de su proyecto Django.
 
-## Build
+- Activar el Entorno Virtual
+  - source venv/bin/activate
+  - Acceda al entorno virtual para utilizar las dependencias aisladas del proyecto.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Navegar a la Carpeta de Pruebas y Luego a la de Producción
+  - cd django_test
+  - cd system_proyect
+  - Dirígete primero al subproyecto de pruebas y luego al despliegue principal.
 
-## Running unit tests
+- Iniciar el Servidor de Desarrollo
+  - python manage.py runserver 192.168.10.6:8000
+  - Lance el servidor local de Django en la IP y puerto especificados para pruebas en red.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Abrir la Consola Interactiva de Django
+  - python manage.py shell
+  - Inicie una shell de Python con todo el contexto de su proyecto cargado (modelos, configuraciones, etc.).
 
-## Running end-to-end tests
+- Generar Archivos de Migración
+  - python manage.py makemigrations
+  - Identifique cambios en los modelos y prepare las migraciones necesarias.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Ejecutar Migraciones en la Base de Datos
+  - python manage.py migrate
+  - Realice las migraciones pendientes, creando o modificando tablas de acuerdo a sus modelos.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Crear un Superusuario
+  - python manage.py createsuperuser
+  - Establezca un usuario administrador que podrá acceder al panel de administración de Django.
